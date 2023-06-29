@@ -1,0 +1,96 @@
+unlet! skip_defaults_vim
+source $VIMRUNTIME/defaults.vim
+
+runtime macros/matchit.vim
+
+colorscheme onehalfdark_custom
+
+set autoindent
+set autoread
+set cursorline
+set display+=lastline
+set expandtab
+set exrc
+set formatoptions+=j
+set hidden
+set history=500
+set hlsearch
+set ignorecase
+set laststatus=2
+set mouse=
+set nowrap
+set number
+set path=.,**
+set scrolloff=8
+set shellcmdflag=-ic
+set shiftwidth=4
+set smartcase
+set smartindent
+set smarttab
+set splitbelow splitright
+set tabpagemax=50
+set tabstop=4 softtabstop=4
+set termwinsize=20x0
+set langmap+=ö`
+set langremap
+
+"------------------------------------------------
+" plugins
+"------------------------------------------------
+
+call plug#begin('~/.vim/plugged')
+
+Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+
+Plug 'easymotion/vim-easymotion'
+
+call plug#end()
+
+"------------------------------------------------
+" Easy motion
+"------------------------------------------------
+
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
+
+" `s{char}{char}{label}`
+" Need one more keystroke, but on average, it may be more comfortable.
+nmap s <Plug>(easymotion-overwin-f2)
+
+let g:EasyMotion_smartcase = 1
+
+" jk motions: Line motions
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+
+hi link EasyMotionTarget Statement
+hi link EasyMotionShade Comment
+
+"------------------------------------------------
+" auto commands
+" -----------------------------------------------
+
+" Set file type for COBOL extensions
+au BufRead,BufNewFile *.cpy,*.ddr,*.sel,*.fil,*.rec set filetype=cobol
+
+"------------------------------------------------
+" keyboard mapping
+"------------------------------------------------
+
+imap jj <esc>
+
+let mapleader = ","
+
+nnoremap <silent> <leader><space> :noh<cr>
+nnoremap <leader>s :w<cr>
+inoremap <leader>s <C-c>:w<cr>
+nnoremap <leader>f /
+nnoremap <leader>b ?
+nnoremap <leader>h ^
+nnoremap <leader>l $
+nnoremap <leader>n <C-c>:bn<cr>
+nnoremap <leader>p <C-c>:bp<cr>
+nnoremap <leader>q <C-c>:q<cr>
+nnoremap <C-p> <C-c>:Files<cr>
+nnoremap <C-d> :term<CR>
+

@@ -1,0 +1,33 @@
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+HISTCONTROL=ignoreboth:erasedups # Erase duplicates
+HISTIGNORE=?:??                  # Ignore one and two letter commands
+HISTFILESIZE=99999               # Max size of history file
+HISTSIZE=99999                   # Amount of history to preserve
+
+if [ -d "$HOME/.bin" ]; then
+	PATH="$HOME/.bin:$PATH"
+fi
+
+if [ -d "$HOME/.local/bin" ]; then
+	PATH="$HOME/.local/bin:$PATH"
+fi
+
+
+
+export EDITOR=vim
+export LESS="FRs"
+export GIT_PS1_SHOWDIRTYSTATE=1
+export GIT_PS1_SHOWSTASHSTATE=1
+export GIT_PS1_SHOWUNTRACKEDFILES=1
+export GIT_PS1_SHOWUPSTREAM="auto verbose"
+export GIT_PS1_SHOWCOLORHINTS=1
+
+PROMPT_COMMAND='__git_ps1 "\[\033[35m\]\u@\h:\[\033[01;34m\]\w\[\033[00m\]" "\\\$ "'
+
+source ~/.git-prompt.sh
+
+source "$HOME/.bash_aliases"
+
+bind -f ~/.inputrc

@@ -1,0 +1,78 @@
+#!/bin/bash
+
+# shorts
+alias b='bat'
+alias c='clear'
+alias d='docker'
+alias e='env | sort | more'
+alias g='git'
+alias h='history'
+alias m='more'
+alias p='sudo promtail -config.file=/etc/promtail/config.yaml'
+alias u='(command -v pacman > /dev/null && sudo pacman -Syu --noconfirm && yay -Syu --noconfirm && yay -Yc --noconfirm) || (sudo apt update && sudo apt upgrade -y && sudo apt autoclean -y && sudo apt autoremove -y && sudo apt autopurge -y)'
+alias v=vim
+
+# ls
+alias ls='ls --color'
+alias ll='ls -lh --color | more'
+alias lla='ls -ahl --color | more'
+alias la='ls -A'
+alias l='ls -CF'
+alias lsd="ls -lF --color | grep --color=never '^d' | more"
+alias lst='ls -lth --color | more'
+
+#grep
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
+#ps
+alias psa="ps auxf"
+alias psgrep="ps aux | grep -v grep | grep -i -e VSZ -e"
+
+# git
+alias ga='git add'
+alias gaa='git add -A'
+alias gaac='git add -A && git commit'
+alias gaacm='git add -A && git commit -m'
+alias gbr='git branch'
+alias gbrd='git branch -D'
+alias gc='git commit'
+alias gco='git checkout'
+alias gcob='git checkout -b'
+alias gcm='git commit -m'
+alias gd='git diff' # Working tree changes not staged
+alias gdc='git diff --cached' # Staged vs last commit
+alias gdh='git diff HEAD' # Working tree vs last commit
+alias gf='git fetch'
+alias gl='git log --format="%C(yellow)%h %C(white)%s %C(cyan) %aN %cr"'
+alias gp='git pull'
+alias gpu='git push'
+# Unto last commit
+alias grl='git reset --soft HEAD~1'
+alias gs='git status'
+alias gss='git status --short'
+alias gst='git stash --all'
+# Unstage
+alias gu='git reset HEAD'
+
+# docker
+alias di='docker images'
+
+# misc
+alias df='df -h'
+alias du='du -h -d 1'
+alias dc='for x in {0..8}; do for i in {30..37}; do for a in {40..47}; do echo -ne "\e[$x;$i;$a""m\\\e[$x;$i;$a""m\e[0;37;40m "; done; echo; done; done; echo ""'
+alias path='echo -e ${PATH//:/\\n}'
+
+# nav
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+
+# misc
+alias btc='printf "%.0f\n" $(curl -s https://blockchain.info/ticker | jq .SEK.last)'
+alias cdwc='cd /appl/veryant/isCOBOL_WEBC/bin'
+alias vpnstat='echo "Du $(curl -s https://integrity.st/ | grep -iEo "ansluter\s(|INTE)\s*via") VPN"'
+alias config='/usr/bin/git --git-dir=/home/jim/.cfg/ --work-tree=/home/jim'
