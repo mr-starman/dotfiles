@@ -14,7 +14,7 @@ if [ -d "$HOME/.local/bin" ]; then
 	PATH="$HOME/.local/bin:$PATH"
 fi
 
-
+shopt -s autocd
 
 export EDITOR=vim
 export LESS="FRs"
