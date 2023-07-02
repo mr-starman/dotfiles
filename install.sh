@@ -7,7 +7,7 @@ rm -f ~/.bashrc
 rm -f ~/.gitconfig
 rm -f ~/.git-prompt.sh
 rm -f ~/.inputrc
-rm -f vim ~/.vim
+rm -f ~/.vim
 
 ln -s dotfiles/bash/bash_aliases ~/.bash_aliases
 ln -s dotfiles/bash/bash_logout ~/.bash_logout
