@@ -8,6 +8,7 @@ rm -f ~/.gitconfig
 rm -f ~/.git-prompt.sh
 rm -f ~/.inputrc
 rm -f ~/.vim
+rm -f ~/.local
 
 ln -s dotfiles/bash/bash_aliases ~/.bash_aliases
 ln -s dotfiles/bash/bash_logout ~/.bash_logout
@@ -17,4 +18,4 @@ ln -s dotfiles/git/gitconfig ~/.gitconfig
 ln -s dotfiles/git/git-prompt.sh ~/.git-prompt.sh
 ln -s dotfiles/bash/inputrc ~/.inputrc
 ln -s dotfiles/vim ~/.vim
-
+ln -s dotfiles/local ~/.local

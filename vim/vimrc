@@ -33,6 +33,8 @@ set tabstop=4 softtabstop=4
 set termwinsize=20x0
 set langmap+=ö`
 set langremap
+set wildignorecase
+set wildmode=longest:list,full
 
 "------------------------------------------------
 " plugins
