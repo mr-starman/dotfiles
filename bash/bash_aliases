@@ -4,22 +4,22 @@
 alias b='bat'
 alias c='clear'
 alias d='docker'
-alias e='env | sort | more'
+alias e='env | sort | $PAGER'
 alias g='git'
 alias h='history'
-alias m='more'
+alias m='$PAGER'
 alias p='sudo promtail -config.file=/etc/promtail/config.yaml'
 alias u='(command -v pacman > /dev/null && sudo pacman -Syu --noconfirm && yay -Syu --noconfirm && yay -Yc --noconfirm) || (sudo apt update && sudo apt upgrade -y && sudo apt autoclean -y && sudo apt autoremove -y && sudo apt autopurge -y)'
 alias v=vim
 
 # ls
 alias ls='ls --color'
-alias ll='ls -lh --color | more'
-alias lla='ls -ahl --color | more'
+alias ll='ls -lh --color | $PAGER'
+alias lla='ls -ahl --color | $PAGER'
 alias la='ls -A'
 alias l='ls -CF'
-alias lsd="ls -lF --color | grep --color=never '^d' | more"
-alias lst='ls -lth --color | more'
+alias lsd="ls -lF --color | grep --color=never '^d' | $PAGER"
+alias lst='ls -lth --color | $PAGER'
 
 #grep
 alias grep='grep --color=auto'

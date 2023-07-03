@@ -17,6 +17,7 @@ fi
 shopt -s autocd
 
 export EDITOR=vim
+export PAGER=less
 export LESS="FRs"
 export GIT_PS1_SHOWDIRTYSTATE=1
 export GIT_PS1_SHOWSTASHSTATE=1
