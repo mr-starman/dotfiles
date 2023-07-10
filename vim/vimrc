@@ -47,6 +47,8 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 
 Plug 'easymotion/vim-easymotion'
 
+Plug 'tpope/vim-surround'
+
 call plug#end()
 
 "------------------------------------------------
@@ -76,6 +78,11 @@ hi link EasyMotionShade Comment
 au BufRead,BufNewFile *.cpy,*.ddr,*.sel,*.fil,*.rec set filetype=cobol
 
 "------------------------------------------------
+" abbrevations
+"------------------------------------------------
+ab perfrom perform
+
+"------------------------------------------------
 " keyboard mapping
 "------------------------------------------------
 
@@ -92,7 +99,7 @@ nnoremap <leader>h ^
 nnoremap <leader>l $
 nnoremap <leader>n <C-c>:bn<cr>
 nnoremap <leader>p <C-c>:bp<cr>
-nnoremap <leader>q <C-c>:q<cr>
+nnoremap <silent> <leader>q <C-c>:q<cr>
+nnoremap <leader>ww <C-w><C-w>
 nnoremap <C-p> <C-c>:Files<cr>
-nnoremap <C-d> :term<CR>
-
+nnoremap <C-d> <C-c>:term<cr>
