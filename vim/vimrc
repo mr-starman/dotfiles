@@ -97,9 +97,14 @@ nnoremap <leader>f /
 nnoremap <leader>b ?
 nnoremap <leader>h ^
 nnoremap <leader>l $
-nnoremap <leader>n <C-c>:bn<cr>
-nnoremap <leader>p <C-c>:bp<cr>
+nnoremap <silent><leader>n <C-c>:bn<cr>
+nnoremap <silent><leader>p <C-c>:bp<cr>
 nnoremap <silent> <leader>q <C-c>:q<cr>
-nnoremap <leader>ww <C-w><C-w>
 nnoremap <C-p> <C-c>:Files<cr>
-nnoremap <C-d> <C-c>:term<cr>
+nnoremap <silent>C-d> <C-c>:term<cr>
+" Basically pressing * on a word
+nnoremap <leader>c /\<<C-r>=expand('<cword>')<CR>\>\C<CR>``cgn
+map <silent> <C-h> 5<C-w><
+map <silent> <C-j> 5<C-W>-
+map <silent> <C-k> 5<C-W>+
+map <silent> <C-l> 5<C-w>>
