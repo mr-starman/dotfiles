@@ -8,6 +8,7 @@ alias e='env | sort | $PAGER'
 alias g='git'
 alias h='history'
 alias m='$PAGER'
+alias nv='nvim'
 alias p='sudo promtail -config.file=/etc/promtail/config.yaml'
 alias u='(command -v pacman > /dev/null && sudo pacman -Syu --noconfirm && yay -Syu --noconfirm && yay -Yc --noconfirm) || (sudo apt update && sudo apt upgrade -y && sudo apt autoclean -y && sudo apt autoremove -y && sudo apt autopurge -y)'
 alias v=vim
