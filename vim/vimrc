@@ -97,6 +97,7 @@ nnoremap <silent><leader>p <C-c>:bp<cr>
 nnoremap <silent> <leader>q <C-c>:q<cr>
 nnoremap <C-p> <C-c>:Files<cr>
 nnoremap <silent><C-d> <C-c>:term<cr>
+
 " Basically pressing * on a word
 nnoremap <leader>c /\<<C-r>=expand('<cword>')<CR>\>\C<CR>``cgn
 map <silent> <C-h> 5<C-w><
