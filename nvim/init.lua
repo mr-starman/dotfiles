@@ -529,6 +529,7 @@ vim.o.splitright = true
 vim.keymap.set('i', 'jj', '<esc>')
 vim.keymap.set('n', '<leader>f', '/')
 vim.keymap.set('n', '<leader>s', ':w<cr>')
+vim.keymap.set('n', '<silent><leader>n', ':bn<cr>')
 vim.keymap.set('n', 's', '<Plug>(easymotion-overwin-f2)')
 
 -- jim end

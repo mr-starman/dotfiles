@@ -42,6 +42,9 @@ set wildmode=longest:list,full
 
 call plug#begin('~/.vim/plugged')
 
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
 Plug 'easymotion/vim-easymotion'
 
 call plug#end()
@@ -92,6 +95,8 @@ nnoremap <leader>f /
 nnoremap <leader>b ?
 nnoremap <leader>h ^
 nnoremap <leader>l $
+nnoremap <leader>b <cmd>Buffers<cr> 
+nnoremap <leader>bl <cmd>BLines<cr> 
 nnoremap <silent><leader>n <C-c>:bn<cr>
 nnoremap <silent><leader>p <C-c>:bp<cr>
 nnoremap <silent> <leader>q <C-c>:q<cr>
