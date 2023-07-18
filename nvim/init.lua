@@ -531,6 +531,20 @@ vim.keymap.set('n', '<leader>f', '/')
 vim.keymap.set('n', '<leader>s', ':w<cr>')
 vim.keymap.set('n', '<leader>n', ':bn<cr>')
 vim.keymap.set('n', 's', '<Plug>(easymotion-overwin-f2)')
+vim.keymap.set('n', '<C-d>', ':split|terminal<cr>')
+vim.keymap.set('t', '<C-w><C-w>', '<C-\\><C-n><C-w><C-w>')
+vim.keymap.set('t', '<C-d>', '<C-\\><C-n>:q<cr>', { silent = true })
+vim.keymap.set('t', '<C-j>', '<C-\\><C-o>5<C-w>-', { silent = true })
+vim.keymap.set('t', '<C-k>', '<C-\\><C-o>5<C-w>+', { silent = true })
+
+-- Automatically enter insert mode and disable line numbering for terminal buffers
+vim.cmd([[
+  autocmd TermOpen * :startinsert | setlocal nonumber
+]])
+
+vim.cmd([[
+  autocmd BufEnter * if &buftype == 'terminal' | :startinsert | endif
+]])
 
 -- jim end
 
