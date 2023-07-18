@@ -539,7 +539,7 @@ vim.keymap.set('t', '<C-k>', '<C-\\><C-o>5<C-w>+', { silent = true })
 
 -- Automatically enter insert mode and disable line numbering for terminal buffers
 vim.cmd([[
-  autocmd TermOpen * :setlocal nonumber | startinsert  
+  autocmd TermOpen * :setlocal nonumber | setlocal noshowmode | startinsert  
 ]])
 
 vim.cmd([[
