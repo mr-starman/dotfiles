@@ -109,3 +109,7 @@ map <silent> <C-h> 5<C-w><
 map <silent> <C-j> 5<C-W>-
 map <silent> <C-k> 5<C-W>+
 map <silent> <C-l> 5<C-w>>
+
+tnoremap <silent><C-j> <C-\><C-n>:resize -5\|normal i<CR>
+tnoremap <silent><C-k> <C-\><C-n>:resize +5\|normal i<CR>
+
