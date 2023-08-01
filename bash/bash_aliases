@@ -14,7 +14,7 @@ alias u='(command -v pacman > /dev/null && sudo pacman -Syu --noconfirm && yay -
 alias v=vim
 
 # ls
-alias ls='ls --color'
+alias ls='LC_COLLATE=C ls -h --group-directories-first --color=auto'
 alias ll='ls -lh --color | $PAGER'
 alias lla='ls -ahl --color | $PAGER'
 alias la='ls -A'
