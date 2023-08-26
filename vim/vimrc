@@ -3,7 +3,7 @@ source $VIMRUNTIME/defaults.vim
 
 runtime macros/matchit.vim
 
-colorscheme onehalfdark_custom
+colorscheme onedark
 
 set autoindent
 set autoread
@@ -35,6 +35,7 @@ set langmap+=ö`
 set langremap
 set wildignorecase
 set wildmode=longest:list,full
+set termguicolors
 
 "------------------------------------------------
 " plugins
