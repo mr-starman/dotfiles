@@ -81,10 +81,9 @@ alias vpnstat='echo "Du $(curl -s https://integrity.st/ | grep -iEo "ansluter\s(
 alias config='/usr/bin/git --git-dir=/home/jim/.cfg/ --work-tree=/home/jim'
 
 # pacman & yay
-alias pacs="pacman -Qq | fzf --preview 'pacman -Qil {}' --layout=reverse --bind 'enter:execute(pacman -Qil {} | less)'"
-alias cleanpacs='pacman -Qdtq | sudo pacman -Rs -'
-alias yays="yay -Qq | fzf --preview 'pacman -Qil {}' --layout=reverse --bind 'enter:execute(yay -Qil {} | less)'"
-alias cleanyays='yay -Qdtq | yay -Rs -'
+alias ipacs="yay -Qq | fzf --preview 'pacman -Qil {}' --layout=reverse --bind 'enter:execute(yay -Qil {} | less)'"
+alias upacs='yay -Qdtq'
+alias cpacs='yay -Qdtq | yay -Rs -'
 
 #snapper
 alias snap='snapper -c root -d'
