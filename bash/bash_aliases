@@ -79,3 +79,15 @@ alias btc='printf "%.0f\n" $(curl -s https://blockchain.info/ticker | jq .SEK.la
 alias cdwc='cd /appl/veryant/isCOBOL_WEBC/bin'
 alias vpnstat='echo "Du $(curl -s https://integrity.st/ | grep -iEo "ansluter\s(|INTE)\s*via") VPN"'
 alias config='/usr/bin/git --git-dir=/home/jim/.cfg/ --work-tree=/home/jim'
+
+# pacman & yay
+alias pacs="pacman -Qq | fzf --preview 'pacman -Qil {}' --layout=reverse --bind 'enter:execute(pacman -Qil {} | less)'"
+alias cleanpacs='pacman -Qdtq | sudo pacman -Rs -'
+alias yays="yay -Qq | fzf --preview 'pacman -Qil {}' --layout=reverse --bind 'enter:execute(yay -Qil {} | less)'"
+alias cleanyays='yay -Qdtq | yay -Rs -'
+
+#snapper
+alias snap='snapper -c root -d'
+alias snaps='snapper ls'
+alias snapback='sudo snapper-rollback'
+
