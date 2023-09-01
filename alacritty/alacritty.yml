@@ -205,8 +205,8 @@ colors:
 
   # Cursor colors
   cursor:
-    text: '0x2c323c'
-    cursor: '0x5c6370'
+    text: '0x282c34'
+    cursor: '0xabb2bf'
 
   # Selection colors
   selection:
