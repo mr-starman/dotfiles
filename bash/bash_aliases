@@ -80,13 +80,13 @@ alias cdwc='cd /appl/veryant/isCOBOL_WEBC/bin'
 alias vpnstat='echo "Du $(curl -s https://integrity.st/ | grep -iEo "ansluter\s(|INTE)\s*via") VPN"'
 alias config='/usr/bin/git --git-dir=/home/jim/.cfg/ --work-tree=/home/jim'
 
-# pacman & yay
-alias ipacs="yay -Qq | fzf --preview 'pacman -Qil {}' --layout=reverse --bind 'enter:execute(yay -Qil {} | less)'"
-alias upacs='yay -Qdtq'
-alias cpacs='yay -Qdtq | yay -Rs -'
-
 #snapper
 alias snap='snapper -c root -d'
 alias snaps='snapper ls'
 alias snapback='sudo snapper-rollback'
 
+#yay
+# search aur and install
+alias yayi='_yayi() { yay -Slq | fzf -q "$1" -m --preview "yay -Si {1}" | xargs -ro yay -S;   }; _yayi'
+# search installed and remove
+alias yayr='_yayr() { yay -Qq  | fzf -q "$1" -m --preview "yay -Qi {1}" | xargs -ro yay -Rns; }; _yayr'
