@@ -18,6 +18,7 @@ shopt -s autocd
 
 export EDITOR=vim
 export PAGER=less
+export BROWSER=brave
 export LESS="FRsX"
 export GIT_PS1_SHOWDIRTYSTATE=1
 export GIT_PS1_SHOWSTASHSTATE=1
