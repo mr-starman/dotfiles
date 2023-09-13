@@ -9,7 +9,7 @@ alias f='_f() { local pattern="$1"; local search_dir="${2:-.}"; find "${search_d
 alias g='git'
 alias h='history'
 alias m='$PAGER'
-alias nv='nvim'
+alias n='newsboat'
 alias p='sudo promtail -config.file=/etc/promtail/config.yaml'
 alias u='(command -v pacman > /dev/null && sudo pacman -Syu --noconfirm && yay -Syu --noconfirm && yay -Yc --noconfirm) || (sudo apt update && sudo apt upgrade -y && sudo apt autoclean -y && sudo apt autoremove -y && sudo apt autopurge -y)'
 alias v=vim
