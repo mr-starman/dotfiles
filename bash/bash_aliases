@@ -78,7 +78,7 @@ alias .....="cd ../../../.."
 # misc
 alias btc='printf "%.0f\n" $(curl -s https://blockchain.info/ticker | jq .SEK.last)'
 alias cdwc='cd /appl/veryant/isCOBOL_WEBC/bin'
-alias vpnstat='echo "Du $(curl -s https://integrity.st/ | grep -iEo "ansluter\s(|INTE)\s*via") VPN"'
+alias vpnstat='if [ "$(curl -s https://ipv6-only.api.5july.net/1.0/ipcheck | jq -r .connected)" = "true" ]; then echo -e "\e[32mconnected\e[0m"; else echo -e "\e[31mnot connected\e[0m"; fi'
 alias config='/usr/bin/git --git-dir=/home/jim/.cfg/ --work-tree=/home/jim'
 
 #snapper
