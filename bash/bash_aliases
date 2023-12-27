@@ -12,6 +12,7 @@ alias m='$PAGER'
 alias n='newsboat'
 alias p='sudo promtail -config.file=/etc/promtail/config.yaml'
 alias u='(command -v pacman > /dev/null && sudo pacman -Syu --noconfirm && yay -Syu --noconfirm && yay -Yc --noconfirm) || (sudo apt update && sudo apt upgrade -y && sudo apt autoclean -y && sudo apt autoremove -y && sudo apt autopurge -y)'
+alias ua='clear && printf "\n***** $HOSTNAME *****\n\n" && u && for p in $MY_PIES;do printf "\n***** $p *****\n\n" && ssh -t "$p" bash -ic "u";done'
 alias v=vim
 alias z='7z a -t7z -m0=lzma2 -mx=9 -mhe=on -p -r'
 alias uz='7z x'
@@ -85,6 +86,9 @@ alias config='/usr/bin/git --git-dir=/home/jim/.cfg/ --work-tree=/home/jim'
 alias snap='snapper -c root -d'
 alias snaps='snapper ls'
 alias snapback='sudo snapper-rollback'
+
+alias w='_f(){ clear && curl wttr.in/"$1"; };_f' 
+#alias w='curl -sL https://www.klart.se/se/stockholms-l%C3%A4n/v%C3%A4der-solna | grep -oP "(Max|Min) temperatur\">\s*\K[^<]+" | head -2'
 
 #yay
 # search aur and install
