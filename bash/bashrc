@@ -28,7 +28,12 @@ export GIT_PS1_SHOWUNTRACKEDFILES=1
 export GIT_PS1_SHOWUPSTREAM="auto verbose"
 export GIT_PS1_SHOWCOLORHINTS=1
 
-PROMPT_COMMAND='__git_ps1 "\[\033[35m\]\u@\h:\[\033[01;34m\]\w\[\033[00m\]" "\\\$ "'
+magenta='\[\033[35m\]'
+blue='\[\033[01;34m\]'
+red='\[\e[31m\]'
+reset='\[\e[m\]'
+
+PROMPT_COMMAND='__git_ps1 "$magenta\u@\h:$blue\w$reset" "$(s=$?;[[ $s != 0 ]] && echo -n "$red($s)$reset")\\\$ "'
 
 source ~/.git-prompt.sh
 BASH_COMPLETION_SCRIPT="/usr/share/bash-completion/bash_completion"
