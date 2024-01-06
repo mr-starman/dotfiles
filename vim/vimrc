@@ -95,6 +95,7 @@ imap jj <esc>
 let mapleader = ","
 
 nnoremap <silent><leader><space> :noh<cr>
+" Write/update
 nnoremap <silent><leader>s :up<cr>
 inoremap <silent><leader>s <C-c>:up<cr>
 nnoremap <leader>f /
