@@ -96,8 +96,8 @@ let mapleader = ","
 
 nnoremap <silent><leader><space> :noh<cr>
 " Write/update
-nnoremap <silent><leader>s :up<cr>
-inoremap <silent><leader>s <C-c>:up<cr>
+nnoremap <leader>s :up<cr>
+inoremap <leader>s <C-c>:up<cr>
 nnoremap <leader>f /
 nnoremap <leader>b ?
 nnoremap <leader>h ^
@@ -107,8 +107,8 @@ nnoremap <leader>b <cmd>Buffers<cr>
 nnoremap <leader>bl <cmd>BLines<cr> 
 nnoremap <silent><leader>n <C-c>:bn<cr>
 nnoremap <silent><leader>p <C-c>:bp<cr>
-nnoremap <silent> <leader>q <C-c>:q<cr>
-nnoremap <C-p><C-c>:Files<cr>
+nnoremap <silent><leader>q <C-c>:q<cr>
+nnoremap <C-p> <C-c>:Files<cr>
 nnoremap <silent><C-d> <C-c>:term<cr>
 " Put/paste the last yanked stuff
 nnoremap <leader>p "0p
