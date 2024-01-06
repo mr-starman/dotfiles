@@ -94,7 +94,7 @@ imap jj <esc>
 
 let mapleader = ","
 
-nnoremap <silent> <leader><space> :noh<cr>
+nnoremap <silent><leader><space> :noh<cr>
 nnoremap <leader>s :w<cr>
 inoremap <leader>s <C-c>:w<cr>
 nnoremap <leader>f /
@@ -107,10 +107,12 @@ nnoremap <leader>bl <cmd>BLines<cr>
 nnoremap <silent><leader>n <C-c>:bn<cr>
 nnoremap <silent><leader>p <C-c>:bp<cr>
 nnoremap <silent> <leader>q <C-c>:q<cr>
-nnoremap <C-p> <C-c>:Files<cr>
+nnoremap <C-p><C-c>:Files<cr>
 nnoremap <silent><C-d> <C-c>:term<cr>
-
-" Basically pressing * on a word
+" Put/paste the last yanked stuff
+nnoremap <leader>p "0p
+nnoremap <leader>P "0P
+" Search for the word under the cursor using *
 nnoremap <leader>c /\<<C-r>=expand('<cword>')<CR>\>\C<CR>``cgn
 
 nnoremap <c-j> :m .+1<CR>==
