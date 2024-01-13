@@ -94,6 +94,8 @@ imap jj <esc>
 
 let mapleader = ","
 
+" strip trailing whitespace
+nnoremap <F5> <cmd>%s/\s\+$//e<cr>
 nnoremap <silent><leader><space> :noh<cr>
 " Write/update
 nnoremap <silent><leader>s :up<cr>
@@ -103,8 +105,8 @@ nnoremap <leader>b ?
 nnoremap <leader>h ^
 nnoremap <leader>l $
 nnoremap <leader>a <C-6>
-nnoremap <leader>b <cmd>Buffers<cr> 
-nnoremap <leader>bl <cmd>BLines<cr> 
+nnoremap <leader>b <cmd>Buffers<cr>
+nnoremap <leader>bl <cmd>BLines<cr>
 nnoremap <silent><leader>n <C-c>:bn<cr>
 nnoremap <silent><leader>p <C-c>:bp<cr>
 nnoremap <silent><leader>q <C-c>:q<cr>
