@@ -85,6 +85,7 @@ augroup END
 " abbrevations
 "------------------------------------------------
 ab perfrom perform
+ab ife if  file-error<cr>perform last-will<cr><bs>end-if.
 
 "------------------------------------------------
 " keyboard mapping

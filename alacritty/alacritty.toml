@@ -1,4 +1,3 @@
-
 [colors.bright]
 black = "0x3e4452"
 blue = "0x61afef"
@@ -51,3 +50,7 @@ lines = 30
 [window.padding]
 x = 16
 y = 16
+
+[selection]
+save_to_clipboard = true
+
