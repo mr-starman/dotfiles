@@ -13,7 +13,7 @@ rm -f ~/.digrc
 rm -f ~/.vim
 rm -f ~/.config/nvim
 rm -rf ~/.config/alacritty
-rm -rf ~/.config/newsboat
+rm -f ~/.tmux.conf
 
 ln -s ~/dotfiles/bash/bash_aliases ~/.bash_aliases
 ln -s ~/dotfiles/bash/bash_logout ~/.bash_logout
@@ -26,4 +26,4 @@ ln -s ~/dotfiles/bash/digrc ~/.digrc
 ln -s ~/dotfiles/vim ~/.vim
 ln -s ~/dotfiles/nvim ~/.config/nvim
 ln -s ~/dotfiles/alacritty ~/.config/alacritty
-ln -s ~/dotfiles/newsboat ~/.config/newsboat
+ln -s ~/dotfiles/tmux/tmux.conf ~/.tmux.conf
