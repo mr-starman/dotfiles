@@ -75,10 +75,11 @@ hi link EasyMotionShade Comment
 
 augroup cobol_autocommands
   autocmd!
-  autocmd BufRead,BufNewFile *.cpy,*.ddr,*.sel,*.fil,*.rec set filetype=cobol
-  autocmd FileType cobol setlocal makeprg=iscc\ -c=resources/iscobol.properties
+  autocmd BufRead,BufNewFile *.cpy,*.ddr,*.sel,*.fil,*.rec,*.iom set filetype=cobol
+  autocmd FileType cobol setlocal makeprg=clear\ &&\ echo\ 'compiling...'\ &&\ iscc\ -c=resources/iscobol.properties
   autocmd FileType cobol setlocal errorformat=--%[A-Z]:\ #%n\ %m;\ file\ =\ %f\\,\ line\ =\ %l\\,\ col\ %c
   autocmd FileType cobol setlocal wildignore=*/run*/*,*/errs*/*
+  autocmd FileType cobol setlocal suffixesadd=.cbl
 augroup END
 
 "------------------------------------------------
@@ -114,6 +115,7 @@ nnoremap <leader>l $
 nnoremap <leader>a <C-6>
 nnoremap <leader>b <cmd>Buffers<cr>
 nnoremap <leader>bl <cmd>BLines<cr>
+nnoremap <silent><leader>m :up<CR>:make %<CR>
 nnoremap <silent><leader>n <C-c>:bn<cr>
 nnoremap <silent><leader>p <C-c>:bp<cr>
 nnoremap <silent><leader>q <C-c>:q<cr>
@@ -125,6 +127,11 @@ nnoremap <silent> <leader>O O<ESC>
 " Put/paste the last yanked stuff
 nnoremap <leader>p "0p
 nnoremap <leader>P "0P
+" Preview file
+nnoremap <leader>pf :vsp \| find <cfile> \| wincmd p<CR>
+" Close preview window (to the right)
+nnoremap <leader>cp :wincmd l \| close<CR>
+
 " Search for the word under the cursor using *
 nnoremap <leader>c /\<<C-r>=expand('<cword>')<CR>\>\C<CR>``cgn
 
