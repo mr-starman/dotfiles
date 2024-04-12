@@ -115,7 +115,7 @@ nnoremap <leader>l $
 nnoremap <leader>a <C-6>
 nnoremap <leader>b <cmd>Buffers<cr>
 nnoremap <leader>bl <cmd>BLines<cr>
-nnoremap <silent><leader>m :up<CR>:make %<CR>
+nnoremap <silent><leader>m :up<CR>:make %<CR><CR>:cwindow<CR>
 nnoremap <silent><leader>n <C-c>:bn<cr>
 nnoremap <silent><leader>p <C-c>:bp<cr>
 nnoremap <silent><leader>q <C-c>:q<cr>
