@@ -124,7 +124,13 @@ require('lazy').setup({
     'akinsho/toggleterm.nvim',
     config = function()
       require("toggleterm").setup{
-        -- your configuration goes here
+       size = function(term)
+          if term.direction == "horizontal" then
+            return 15 -- Set the height to 15 lines
+          elseif term.direction == "vertical" then
+            return vim.o.columns * 0.4 -- Set the width to 40% of the screen width
+          end
+        end
       }
     end
   },
