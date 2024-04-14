@@ -1,6 +1,6 @@
 vim.g.mapleader = ','
 vim.g.maplocalleader = ','
-vim.g.have_nerd_font = false
+vim.g.have_nerd_font = true
 
 vim.opt.number = true
 vim.opt.mouse = 'a'
@@ -64,6 +64,18 @@ vim.keymap.set('v', '<c-k>', "<cmd>m '<-2<CR>gv=gv")
 -- Terminal mode mappings
 vim.keymap.set('t', '<silent><c-j>', '<C-\\><c-n><cmd>resize -5\\|normal i<cr>')
 vim.keymap.set('t', '<silent><c-k>', '<C-\\><c-n><cmd>resize +5\\|normal i<cr>')
+
+-- Cobol stuff (move to plugin?)
+vim.cmd([[
+  augroup cobol_autocommands
+    autocmd!
+    autocmd BufRead,BufNewFile *.cpy,*.ddr,*.sel,*.fil,*.rec,*.iom set filetype=cobol
+    autocmd FileType cobol setlocal makeprg=clear\ &&\ echo\ 'compiling...'\ &&\ iscc\ -c=resources/iscobol.properties
+    autocmd FileType cobol setlocal errorformat=--%[A-Z]:\ #%n\ %m;\ file\ =\ %f\\,\ line\ =\ %l\\,\ col\ %c
+    autocmd FileType cobol setlocal wildignore=*/run*/*,*/errs*/*
+    autocmd FileType cobol setlocal suffixesadd=.cbl
+  augroup END
+]])
 
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
