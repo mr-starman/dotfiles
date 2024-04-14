@@ -42,6 +42,7 @@ family = "MesloLGS NF"
 [window]
 decorations = "None"
 title = "Terminal"
+startup_mode = "Fullscreen"
 
 [window.dimensions]
 columns = 120
