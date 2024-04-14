@@ -34,8 +34,8 @@ vim.keymap.set('n', '<leader>b', '?')
 vim.keymap.set('n', '<leader>h', '^')
 vim.keymap.set('n', '<leader>l', '$')
 vim.keymap.set('n', '<leader>a', '<c-6>')
-vim.keymap.set('n', '<leader>b', '<cmd>Buffers<cr>')
-vim.keymap.set('n', '<leader>bl', '<cmd>BLines<cr>')
+vim.keymap.set('n', '<leader>b', '<cmd>Telescope buffers<cr>')
+vim.keymap.set('n', '<leader>bl', '<cmd>Telescope current_buffer_fuzzy_find<cr>')
 vim.keymap.set('n', '<leader>m', '<cmd>up<cr>make %<cr>')
 vim.keymap.set('n', '<leader>n', '<cmd>bn<cr>')
 vim.keymap.set('n', '<leader>p', '<cmd>bp<cr>')
@@ -100,6 +100,7 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
+  'easymotion/vim-easymotion',
 
   -- NOTE: Plugins can also be added by using a table,
   -- with the first argument being the link and the following
@@ -702,3 +703,13 @@ require('lazy').setup({
     },
   },
 })
+
+-- Easy motion
+vim.g.EasyMotion_do_mapping = 0 -- Disable default mappings
+vim.api.nvim_set_keymap('n', 's', '<Plug>(easymotion-overwin-f2)', {})
+vim.g.EasyMotion_smartcase = 1
+vim.api.nvim_set_keymap('n', '<Leader>j', '<Plug>(easymotion-j)', {})
+vim.api.nvim_set_keymap('n', '<Leader>k', '<Plug>(easymotion-k)', {})
+vim.cmd('hi link EasyMotionTarget Statement')
+vim.cmd('hi link EasyMotionShade Comment')
+
