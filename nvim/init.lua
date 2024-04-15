@@ -36,7 +36,7 @@ vim.keymap.set('n', '<leader>l', '$')
 vim.keymap.set('n', '<leader>a', '<c-6>')
 vim.keymap.set('n', '<leader>b', '<cmd>Telescope buffers<cr>')
 vim.keymap.set('n', '<leader>bl', '<cmd>Telescope current_buffer_fuzzy_find<cr>')
-vim.keymap.set('n', '<leader>m', '<cmd>up<cr>make %<cr>')
+vim.keymap.set('n', '<leader>m', '<cmd>update<cr><cmd>echo "compiling..."<cr><cmd>silent make %<cr><cr><cmd>cwindow<cr><cmd>echo ""<cr>')
 vim.keymap.set('n', '<leader>n', '<cmd>bn<cr>')
 vim.keymap.set('n', '<leader>p', '<cmd>bp<cr>')
 vim.keymap.set('n', '<leader>q', '<cmd>q<cr>')
@@ -70,7 +70,7 @@ vim.cmd([[
   augroup cobol_autocommands
     autocmd!
     autocmd BufRead,BufNewFile *.cpy,*.ddr,*.sel,*.fil,*.rec,*.iom set filetype=cobol
-    autocmd FileType cobol setlocal makeprg=clear\ &&\ echo\ 'compiling...'\ &&\ iscc\ -c=resources/iscobol.properties
+    autocmd FileType cobol setlocal makeprg=iscc\ -c=resources/iscobol.properties
     autocmd FileType cobol setlocal errorformat=--%[A-Z]:\ #%n\ %m;\ file\ =\ %f\\,\ line\ =\ %l\\,\ col\ %c
     autocmd FileType cobol setlocal wildignore=*/run*/*,*/errs*/*
     autocmd FileType cobol setlocal suffixesadd=.cbl
