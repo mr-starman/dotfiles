@@ -16,6 +16,8 @@ set hidden
 set history=500
 set hlsearch
 set ignorecase
+set langmap+=ö`
+set langremap
 set laststatus=2
 set mouse=
 set nowrap
@@ -30,12 +32,12 @@ set smarttab
 set splitbelow splitright
 set tabpagemax=50
 set tabstop=4 softtabstop=4
+set termguicolors
 set termwinsize=20x0
-set langmap+=ö`
-set langremap
+set timeoutlen=300
+set updatetime=250
 set wildignorecase
 set wildmode=longest:list,full
-set termguicolors
 
 "------------------------------------------------
 " plugins
@@ -102,9 +104,6 @@ nnoremap <F5> <cmd>%s/\s\+$//e<cr>
 nnoremap <silent><leader><space> :noh<cr>
 " yank until end of line
 nnoremap Y y$
-" center cursor/screen on next find
-nnoremap n nzz
-nnoremap N Nzz
 " Write/update
 nnoremap <silent><leader>s :up<cr>
 inoremap <silent><leader>s <C-c>:up<cr>
@@ -117,7 +116,6 @@ nnoremap <leader>b <cmd>Buffers<cr>
 nnoremap <leader>bl <cmd>BLines<cr>
 nnoremap <silent><leader>m :up<CR>:make %<CR><CR>:cwindow<CR>
 nnoremap <silent><leader>n <C-c>:bn<cr>
-nnoremap <silent><leader>p <C-c>:bp<cr>
 nnoremap <silent><leader>q <C-c>:q<cr>
 nnoremap <C-p> <C-c>:Files<cr>
 nnoremap <silent><C-d> <C-c>:term<cr>
