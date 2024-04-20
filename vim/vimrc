@@ -121,6 +121,7 @@ nnoremap <leader><leader> <C-^>
 " Write/update
 nnoremap <silent><leader>s :up<cr>
 inoremap <silent><leader>s <C-c>:up<cr>
+nnoremap U <C-r>
 nnoremap <leader>f /
 nnoremap <leader>r :call ReplaceWordWithCursor()<CR>
 nnoremap <leader>b ?
