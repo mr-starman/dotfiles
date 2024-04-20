@@ -34,7 +34,7 @@ set tabpagemax=50
 set tabstop=4 softtabstop=4
 set termguicolors
 set termwinsize=20x0
-set timeoutlen=300
+set timeoutlen=500
 set updatetime=250
 set wildignorecase
 set wildmode=longest:list,full
@@ -92,6 +92,18 @@ ab en-dif. end-if.
 ab ife if  file-error<cr>perform last-will<cr><bs>end-if.
 
 "------------------------------------------------
+" functions
+" -----------------------------------------------
+"
+function! ReplaceWordWithCursor()
+    let old_word = expand('<cword>')
+    let new_word = input('Enter replacement word: ')
+    if new_word != ''
+        execute '%s/\<' . old_word . '\>/' . new_word . '/gc'
+    endif
+endfunction
+
+"------------------------------------------------
 " keyboard mappings
 "------------------------------------------------
 
@@ -104,10 +116,13 @@ nnoremap <F5> <cmd>%s/\s\+$//e<cr>
 nnoremap <silent><leader><space> :noh<cr>
 " yank until end of line
 nnoremap Y y$
+" switch to alternate buffer
+nnoremap <leader><leader> <C-^>
 " Write/update
 nnoremap <silent><leader>s :up<cr>
 inoremap <silent><leader>s <C-c>:up<cr>
 nnoremap <leader>f /
+nnoremap <leader>r :call ReplaceWordWithCursor()<CR>
 nnoremap <leader>b ?
 nnoremap <leader>h ^
 nnoremap <leader>l $
@@ -116,6 +131,7 @@ nnoremap <leader>b <cmd>Buffers<cr>
 nnoremap <leader>bl <cmd>BLines<cr>
 nnoremap <silent><leader>m :up<CR>:make %<CR><CR>:cwindow<CR>
 nnoremap <silent><leader>n <C-c>:bn<cr>
+nnoremap <silent><leader>N <C-c>:bp<cr>
 nnoremap <silent><leader>q <C-c>:q<cr>
 nnoremap <C-p> <C-c>:Files<cr>
 nnoremap <silent><C-d> <C-c>:term<cr>
@@ -130,8 +146,9 @@ nnoremap <leader>pf :vsp \| find <cfile> \| wincmd p<CR>
 " Close preview window (to the right)
 nnoremap <leader>cp :wincmd l \| close<CR>
 
-" Search for the word under the cursor using *
+" change or replace current word
 nnoremap <leader>c /\<<C-r>=expand('<cword>')<CR>\>\C<CR>``cgn
+nnoremap <leader>d /\<<C-r>=expand('<cword>')<CR>\>\C<CR>``dgn
 
 nnoremap <c-j> :m .+1<CR>==
 nnoremap <c-k> :m .-2<CR>==
@@ -147,3 +164,17 @@ vnoremap <c-k> :m '<-2<CR>gv=gv
 tnoremap <silent><C-j> <C-\><C-n>:resize -5\|normal i<CR>
 tnoremap <silent><C-k> <C-\><C-n>:resize +5\|normal i<CR>
 
+" keep selection when indenting in visual mode
+xnoremap <  <gv
+xnoremap >  >gv
+
+" always n for search forward and N for backward
+nnoremap <expr> n  'Nn'[v:searchforward]
+xnoremap <expr> n  'Nn'[v:searchforward]
+onoremap <expr> n  'Nn'[v:searchforward]
+nnoremap <expr> N  'nN'[v:searchforward]
+xnoremap <expr> N  'nN'[v:searchforward]
+onoremap <expr> N  'nN'[v:searchforward]
+
+cnoremap <expr> <c-n> wildmenumode() ? "\<c-n>" : "\<down>"
+cnoremap <expr> <c-p> wildmenumode() ? "\<c-p>" : "\<up>"
