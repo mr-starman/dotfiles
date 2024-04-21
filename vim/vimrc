@@ -36,7 +36,7 @@ set tabstop=4 softtabstop=4
 set termguicolors
 set termwinsize=20x0
 set timeoutlen=500
-set updatetime=250
+set updatetime=500
 set wildignorecase
 set wildmode=longest:list,full
 
@@ -140,6 +140,10 @@ nnoremap c "_c
 noremap v <c-v>
 
 nnoremap <Cr> o<ESC>
+
+" Use space to jump down a page (like browsers do)...
+nnoremap   <Space> <PageDown>
+xnoremap   <Space> <PageDown>
 
 " strip trailing whitespace
 nnoremap <F5> <cmd>%s/\s\+$//e<cr>
