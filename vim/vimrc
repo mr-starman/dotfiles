@@ -21,6 +21,7 @@ set langremap
 set laststatus=2
 set mouse=
 set nomodeline
+set noshowmode
 set nowrap
 set number
 set path=.,**
