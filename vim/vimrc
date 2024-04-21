@@ -50,6 +50,8 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'machakann/vim-highlightedyank'
+Plug 'airblade/vim-gitgutter'
+Plug 'rhysd/git-messenger.vim'
 
 call plug#end()
 
@@ -74,9 +76,14 @@ hi link EasyMotionShade Comment
 
 
 "------------------------------------------------
-" Highlighted yank
+" highlighted yank
 "------------------------------------------------
 let g:highlightedyank_highlight_duration = 400
+
+"------------------------------------------------
+" git messenger
+"------------------------------------------------
+let g:git_messenger_include_diff = 'current'
 
 "------------------------------------------------
 " Undo
