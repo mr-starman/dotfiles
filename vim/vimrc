@@ -84,6 +84,7 @@ let g:highlightedyank_highlight_duration = 400
 " git messenger
 "------------------------------------------------
 let g:git_messenger_include_diff = 'current'
+let g:git_messenger_close_on_cursor_moved = v:true
 
 "------------------------------------------------
 " Undo
