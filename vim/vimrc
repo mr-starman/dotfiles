@@ -179,7 +179,7 @@ nnoremap Y y$
 " switch to alternate buffer
 nnoremap <leader><leader> <C-^>
 " Write/update
-nnoremap <silent><leader>s :up<cr>:GitGutterAll<cr>
+nnoremap <silent><leader>s :up<cr>
 inoremap <silent><leader>s <C-c>:up<cr>
 nnoremap U <C-r>
 nnoremap <leader>f /
