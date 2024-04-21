@@ -187,6 +187,7 @@ nnoremap <leader>r :call ReplaceWordWithCursor()<CR>
 nnoremap <leader>b ?
 nnoremap <leader>h ^
 nnoremap <leader>l $
+nnoremap <leader>gg <cmd>GitGutterAll<cr>
 nnoremap <leader>a <C-6>
 nnoremap <leader>b <cmd>Buffers<cr>
 nnoremap <leader>bl <cmd>BLines<cr>
