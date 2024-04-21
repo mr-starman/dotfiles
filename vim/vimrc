@@ -49,6 +49,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'easymotion/vim-easymotion'
+Plug 'machakann/vim-highlightedyank'
 
 call plug#end()
 
@@ -71,6 +72,11 @@ map <Leader>k <Plug>(easymotion-k)
 hi link EasyMotionTarget Statement
 hi link EasyMotionShade Comment
 
+
+"------------------------------------------------
+" Highlighted yank
+"------------------------------------------------
+let g:highlightedyank_highlight_duration = 400
 
 "------------------------------------------------
 " Undo
