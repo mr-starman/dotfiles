@@ -55,6 +55,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'rhysd/git-messenger.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-fugitive'
+Plug 'itchyny/vim-gitbranch'
 
 call plug#end()
 
@@ -100,7 +101,7 @@ let g:lightline = {
       \             [ 'gitbranch', 'readonly', 'absolutepath', 'modified' ] ]
       \ },
       \ 'component_function': {
-      \   'gitbranch': 'FugitiveHead'
+      \   'gitbranch': 'gitbranch#name'
       \ }
       \ }
 
