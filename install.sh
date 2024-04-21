@@ -1,6 +1,7 @@
 #!/bin/bash
 
 mkdir -p ~/.config
+mkdir -p ~/.vim_undo_files
 
 rm -f ~/.bash_aliases
 rm -f ~/.bash_logout

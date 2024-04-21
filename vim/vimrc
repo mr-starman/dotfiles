@@ -20,6 +20,7 @@ set langmap+=ö`
 set langremap
 set laststatus=2
 set mouse=
+set nomodeline
 set nowrap
 set number
 set path=.,**
@@ -47,7 +48,6 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'tpope/vim-dispatch'
 Plug 'easymotion/vim-easymotion'
 
 call plug#end()
@@ -71,9 +71,30 @@ map <Leader>k <Plug>(easymotion-k)
 hi link EasyMotionTarget Statement
 hi link EasyMotionShade Comment
 
+
+"------------------------------------------------
+" Undo
+"------------------------------------------------
+if has('persistent_undo')
+    " Save all undo files in a single location (less messy, more risky)...
+    set undodir=$HOME/.vim_undo_files
+
+    " Save a lot of back-history...
+    set undolevels=5000
+
+    " Actually switch on persistent undo
+    set undofile
+
+endif
+
 "------------------------------------------------
 " auto commands
 " -----------------------------------------------
+
+augroup VimReload
+autocmd!
+    autocmd BufWritePost $MYVIMRC nested source $MYVIMRC
+augroup END
 
 augroup cobol_autocommands
   autocmd!
@@ -111,6 +132,15 @@ imap jj <esc>
 
 let mapleader = ","
 
+" don't overrite yanks, sen c and d to blackhole
+nnoremap d "_d
+nnoremap c "_c
+
+" v is always block mode
+noremap v <c-v>
+
+nnoremap <Cr> o<ESC>
+
 " strip trailing whitespace
 nnoremap <F5> <cmd>%s/\s\+$//e<cr>
 nnoremap <silent><leader><space> :noh<cr>
@@ -139,9 +169,6 @@ nnoremap <silent><C-d> <C-c>:term<cr>
 " add blank line above/below and stay in normal mode
 nnoremap <silent> <leader>o o<ESC>
 nnoremap <silent> <leader>O O<ESC>
-" Put/paste the last yanked stuff
-nnoremap <leader>p "0p
-nnoremap <leader>P "0P
 " Preview file
 nnoremap <leader>pf :vsp \| find <cfile> \| wincmd p<CR>
 " Close preview window (to the right)
