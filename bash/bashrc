@@ -22,6 +22,7 @@ export PAGER=less
 export BROWSER=brave
 export LESS="FRsX"
 export LS_COLORS='di=94:ln=96:ex=91'
+export FZF_DEFAULT_COMMAND='rg --files'
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 export GIT_PS1_SHOWDIRTYSTATE=1
 export GIT_PS1_SHOWSTASHSTATE=1
@@ -42,6 +43,8 @@ BASH_COMPLETION_SCRIPT="/usr/share/bash-completion/bash_completion"
 if [ -f "$BASH_COMPLETION_SCRIPT" ]; then
     source "$BASH_COMPLETION_SCRIPT"
 fi
+
+source /usr/share/git/completion/git-completion.bash
 
 source "$HOME/.bash_aliases"
 
