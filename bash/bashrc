@@ -39,12 +39,19 @@ PROMPT_COMMAND='__git_ps1 "$light_magenta\u@\h:$light_blue\w$reset" "$(s=$?;[[ $
 
 source ~/.git-prompt.sh
 BASH_COMPLETION_SCRIPT="/usr/share/bash-completion/bash_completion"
-
 if [ -f "$BASH_COMPLETION_SCRIPT" ]; then
     source "$BASH_COMPLETION_SCRIPT"
 fi
 
-source /usr/share/git/completion/git-completion.bash
+GIT_COMPLETION_SCRIPT1="/usr/share/bash-completion/completions/git"
+if [ -f "$GIT_COMPLETION_SCRIPT1" ]; then
+    source "$GIT_COMPLETION_SCRIPT1"
+fi
+
+GIT_COMPLETION_SCRIPT2="/usr/share/git/completion/git-completion.bash"
+if [ -f "$GIT_COMPLETION_SCRIPT2" ]; then
+    source "$GIT_COMPLETION_SCRIPT2"
+fi
 
 source "$HOME/.bash_aliases"
 
