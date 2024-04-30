@@ -189,8 +189,6 @@ nnoremap c "_c
 " v is always block mode
 noremap v <c-v>
 
-nnoremap <Cr> o<ESC>
-
 " Use space to jump down a page (like browsers do)...
 nnoremap   <Space> <PageDown>
 xnoremap   <Space> <PageDown>
