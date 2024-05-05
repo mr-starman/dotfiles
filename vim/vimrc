@@ -189,10 +189,6 @@ nnoremap c "_c
 " v is always block mode
 noremap v <c-v>
 
-" Use space to jump down a page (like browsers do)...
-nnoremap   <Space> <PageDown>
-xnoremap   <Space> <PageDown>
-
 " strip trailing whitespace
 nnoremap <F5> <cmd>%s/\s\+$//e<cr>
 nnoremap <silent><leader><space> :noh<cr>
