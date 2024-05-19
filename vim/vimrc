@@ -208,7 +208,6 @@ nnoremap <leader>b ?
 nnoremap <leader>h ^
 nnoremap <leader>l $
 nnoremap <leader>gg <cmd>GitGutterAll<cr>
-nnoremap <leader>a <C-6>
 nnoremap <leader>b <cmd>Buffers<cr>
 nnoremap <leader>bl <cmd>BLines<cr>
 nnoremap <silent><leader>m :up<CR>:make %<CR><CR>:cwindow<CR>
@@ -257,3 +256,7 @@ onoremap <expr> N  'nN'[v:searchforward]
 
 cnoremap <expr> <c-n> wildmenumode() ? "\<c-n>" : "\<down>"
 cnoremap <expr> <c-p> wildmenumode() ? "\<c-p>" : "\<up>"
+
+" align text with space delim
+vnoremap <silent><leader>a :EasyAlign*\<cr> 
+nnoremap <silent><leader>a :'<,'>EasyAlign*\<cr> 
