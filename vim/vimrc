@@ -214,7 +214,10 @@ nnoremap <silent><leader>m :up<CR>:make %<CR><CR>:cwindow<CR>
 nnoremap <silent><leader>n <C-c>:bn<cr>
 nnoremap <silent><leader>N <C-c>:bp<cr>
 nnoremap <silent><leader>q <C-c>:q<cr>
-nnoremap <C-p> <C-c>:Files<cr>
+if !exists('g:vscode')
+  " Only set this mapping when not in VSCode
+  nnoremap <C-p> <C-c>:Files<CR>
+endif
 nnoremap <silent><C-d> <C-c>:term<cr>
 " add blank line above/below and stay in normal mode
 nnoremap <silent> <leader>o o<ESC>

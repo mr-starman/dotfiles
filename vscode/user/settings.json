@@ -29,5 +29,10 @@
         }
     ],
     "vim.sneak": true,
-    "vim.visualModeKeyBindings": []
+    "vim.visualModeKeyBindings": [],
+    "redhat.telemetry.enabled": false,
+    "liveServer.settings.fullReload": true,
+    "[html]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    }
 }
