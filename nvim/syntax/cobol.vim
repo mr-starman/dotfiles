@@ -64,4 +64,3 @@ hi def link cobolString         String
 hi def link cobolFunction       Function
 
 let b:current_syntax = "cobol"
-
