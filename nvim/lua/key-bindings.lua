@@ -23,6 +23,7 @@ vim.keymap.set('n', '<leader><space>', '<cmd>noh<cr>')
 vim.keymap.set('n', 'n', 'nzz')
 vim.keymap.set('n', 'N', 'Nzz')
 vim.keymap.set('n', 'Y', 'y$')
+vim.keymap.set('n', 'v', '<c-v>')
 
 -- Insert mode mappings
 vim.keymap.set('i', '(', '()<esc>i', { noremap = true })
