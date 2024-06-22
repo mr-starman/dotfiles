@@ -1,5 +1,5 @@
 {
-    "workbench.colorTheme": "onedark.nvim",
+    "workbench.colorTheme": "Catppuccin Mocha",
     "vim.leader": ",",
     "vim.sneakUseIgnorecaseAndSmartcase": true,
     "vim.timeout": 500,
