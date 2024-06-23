@@ -7,6 +7,6 @@ return {
     vim.api.nvim_set_keymap('n', '<Leader>j', '<Plug>(easymotion-j)', {})
     vim.api.nvim_set_keymap('n', '<Leader>k', '<Plug>(easymotion-k)', {})
     vim.cmd('hi link EasyMotionTarget Statement')
-    vim.cmd('hi link EasyMotionShade Comment')	
+    vim.cmd('hi link EasyMotionShade Comment')
   end
 }
