@@ -218,7 +218,7 @@ if !exists('g:vscode')
   " Only set this mapping when not in VSCode
   nnoremap <C-p> <C-c>:Files<CR>
 endif
-nnoremap <silent><C-d> <C-c>:term<cr>
+nnoremap <silent><C-t> <C-c>:term<cr>
 " add blank line above/below and stay in normal mode
 nnoremap <silent> <leader>o o<ESC>
 nnoremap <silent> <leader>O O<ESC>
@@ -263,3 +263,6 @@ cnoremap <expr> <c-p> wildmenumode() ? "\<c-p>" : "\<up>"
 " align text with space delim
 vnoremap <silent><leader>a :EasyAlign*\<cr> 
 nnoremap <silent><leader>a :'<,'>EasyAlign*\<cr> 
+
+" special highlights
+highlight Terminal ctermbg=0 guibg=#181825
