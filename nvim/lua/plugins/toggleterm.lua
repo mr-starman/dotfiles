@@ -1,7 +1,9 @@
 return {
-	"akinsho/toggleterm.nvim",
+	'akinsho/toggleterm.nvim',
 	config = function()
-		require("toggleterm").setup()
-		vim.keymap.set('n', '<c-d>', '<c-c><cmd>ToggleTerm<cr>')
-	end
+		require('toggleterm').setup {
+			open_mapping = [[<c-t>]],
+		}
+		vim.api.nvim_set_keymap('n', '<c-t>', ':ToggleTerm<CR>', { noremap = true, silent = true })
+	end,
 }
