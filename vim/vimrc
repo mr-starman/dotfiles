@@ -33,7 +33,7 @@ set splitbelow splitright
 set tabpagemax=50
 set tabstop=4 softtabstop=4
 set termguicolors
-set termwinsize=20x0
+set termwinsize=17x0
 set timeoutlen=500
 set updatetime=300
 set wildignorecase
