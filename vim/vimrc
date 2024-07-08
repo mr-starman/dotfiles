@@ -57,6 +57,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'itchyny/vim-gitbranch'
 Plug 'SirVer/ultisnips'
 Plug 'catppuccin/vim', { 'as': 'catppuccin' }
+Plug 'romainl/vim-cool'
 
 call plug#end()
 
