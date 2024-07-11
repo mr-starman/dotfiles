@@ -6,7 +6,7 @@ vim.g.loaded_ruby_provider = 0
 vim.g.mapleader = ','
 vim.g.maplocalleader = ','
 vim.g.python3_host_prog = '/bin/python3'
-
+vim.g.no_ocaml_maps = 1
 vim.opt.breakindent = true
 vim.opt.clipboard = 'unnamedplus'
 vim.opt.cursorline = true

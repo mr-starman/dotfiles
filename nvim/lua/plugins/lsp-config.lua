@@ -43,9 +43,11 @@ return {
 				capabilities = capabilities,
 			}
 			lspconfig.ocamllsp.setup {
+				filetypes = { 'ocaml', 'ocaml.menhir', 'ocaml.interface', 'ocaml.ocamllex', 'reason', 'dune' },
+				root_dir = lspconfig.util.root_pattern('*.opam', 'esy.json', 'package.json', '.git', 'dune-project', 'dune-workspace', '*.ml'),
+				on_attach = on_attach,
 				capabilities = capabilities,
 			}
-
 			vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
 			vim.keymap.set('n', '<leader>gd', vim.lsp.buf.definition, {})
 			vim.keymap.set('n', '<leader>gr', vim.lsp.buf.references, {})
