@@ -58,6 +58,16 @@ if [ -f "$GIT_COMPLETION_SCRIPT2" ]; then
     source "$GIT_COMPLETION_SCRIPT2"
 fi
 
+FZF_KEY_BINDING_SCRIPT="/usr/share/fzf/key-bindings.bash"
+if [ -f "$FZF_KEY_BINDING_SCRIPT" ]; then
+    source "$FZF_KEY_BINDING_SCRIPT"
+fi
+
+FZF_COMPLETION_SCRIPT2="/usr/share/fzf/completion.bash"
+if [ -f "$FZF_COMPLETION_SCRIPT2" ]; then
+    source "$FZF_COMPLETION_SCRIPT2"
+fi
+
 source "$HOME/.bash_aliases"
 
 bind -f ~/.inputrc
