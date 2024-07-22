@@ -1,7 +1,5 @@
 -- Normal mode mappings
 vim.keymap.set('i', '<leader>s', '<C-c><cmd>up<cr>')
-vim.keymap.set('n', '<c-j>', '<esc><cmd>m .+1<cr>')
-vim.keymap.set('n', '<c-k>', '<esc><cmd>m .-2<cr>')
 vim.keymap.set('n', '<c-p>', '<c-c><cmd>Files<cr>')
 vim.keymap.set('n', '<leader>a', '<c-6>')
 vim.keymap.set('n', '<leader>b', '?')
