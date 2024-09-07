@@ -86,7 +86,7 @@ family = "JetBrainsMono Nerd Font"
 [window]
 decorations = "None"
 title = "Terminal"
-startup_mode = "Fullscreen"
+startup_mode = "Windowed"
 
 [window.dimensions]
 columns = 120
