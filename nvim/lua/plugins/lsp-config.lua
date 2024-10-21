@@ -42,6 +42,9 @@ return {
 			lspconfig.ts_ls.setup {
 				capabilities = capabilities,
 			}
+			lspconfig.csharp_ls.setup {
+				capabilities = capabilities,
+			}
 			vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
 			vim.keymap.set('n', '<leader>gd', vim.lsp.buf.definition, {})
 			vim.keymap.set('n', '<leader>gr', vim.lsp.buf.references, {})
