@@ -45,6 +45,25 @@ return {
 			lspconfig.csharp_ls.setup {
 				capabilities = capabilities,
 			}
+			lspconfig.taplo.setup {
+				capabilities = capabilities,
+			}
+			lspconfig.rust_analyzer.setup {
+				settings = {
+					['rust-analyzer'] = {
+						assist = {
+							importMergeBehavior = 'last',
+							importPrefix = 'by_self',
+						},
+						cargo = {
+							loadOutDirsFromCheck = true,
+						},
+						procMacro = {
+							enable = true,
+						},
+					},
+				},
+			}
 			vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
 			vim.keymap.set('n', '<leader>gd', vim.lsp.buf.definition, {})
 			vim.keymap.set('n', '<leader>gr', vim.lsp.buf.references, {})
