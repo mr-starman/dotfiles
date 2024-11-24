@@ -77,6 +77,7 @@ alias ....="cd ../../.."
 alias .....="cd ../../../.."
 
 # misc
+alias myip="ip addr show | grep 'inet ' | grep -v '127.0.0.1' | awk '{print \$2}' | cut -d/ -f 1 | head -n 1"
 alias btc='printf "%.0f\n" $(curl -s https://blockchain.info/ticker | jq .SEK.last)'
 alias cdwc='cd /appl/veryant/isCOBOL_WEBC/bin'
 alias vpnstat='if [ "$(curl -s https://ipv6-only.api.5july.net/1.0/ipcheck | jq -r .connected)" = "true" ]; then echo -e "\e[32mconnected\e[0m"; else echo -e "\e[31mnot connected\e[0m"; fi'
