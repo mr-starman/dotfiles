@@ -26,6 +26,7 @@ alias lla='ls -ahl --color | $PAGER'
 alias la='ls -A'
 alias l='ls -CF'
 alias lsd="ls -lF --color | grep --color=never '^d' | $PAGER"
+alias lss='ls --human-readable --size -1 -S -F | sort -r'
 alias lst='ls -lth --color | $PAGER'
 
 #grep
