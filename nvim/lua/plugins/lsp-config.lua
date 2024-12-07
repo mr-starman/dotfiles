@@ -48,6 +48,9 @@ return {
       lspconfig.taplo.setup {
         capabilities = capabilities,
       }
+      lspconfig.bashls.setup {
+        capabilities = capabilities,
+      }
       lspconfig.rust_analyzer.setup {
         settings = {
           ['rust-analyzer'] = {
