@@ -51,6 +51,9 @@ return {
       lspconfig.bashls.setup {
         capabilities = capabilities,
       }
+      lspconfig.pylsp.setup {
+        capabilities = capabilities,
+      }
       lspconfig.rust_analyzer.setup {
         settings = {
           ['rust-analyzer'] = {
