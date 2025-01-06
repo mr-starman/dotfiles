@@ -47,5 +47,6 @@
     "[typescript]": {
         "editor.defaultFormatter": "vscode.typescript-language-features"
     },
-    "workbench.iconTheme": "icons"
+    "workbench.iconTheme": "icons",
+    "breadcrumbs.enabled": false
 }
