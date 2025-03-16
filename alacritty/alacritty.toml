@@ -86,7 +86,7 @@ family = "JetBrainsMono Nerd Font"
 [window]
 decorations = "None"
 title = "Terminal"
-startup_mode = "Windowed"
+startup_mode = "Maximized"
 
 [window.dimensions]
 columns = 120
@@ -98,4 +98,3 @@ y = 16
 
 [selection]
 save_to_clipboard = true
-
