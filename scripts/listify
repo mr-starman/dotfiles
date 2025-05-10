@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# Process the input from standard input (stdin) with sed commands
+sed 's/.*/&,/' | sed '$s/,$//'
