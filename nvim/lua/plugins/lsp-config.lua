@@ -2,6 +2,7 @@ return {
 	{
 		'williamboman/mason.nvim',
 		lazy = false,
+		version = '1.11.0',
 		config = function()
 			require('mason').setup {
 				ui = {
@@ -13,6 +14,7 @@ return {
 	{
 		'williamboman/mason-lspconfig.nvim',
 		lazy = false,
+		version = '1.32.0',
 		opts = {
 			auto_install = true,
 		},
