@@ -33,6 +33,7 @@ alias lst='ls -lth --color | $PAGER'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
+alias hg='history | grep'
 
 #ps
 alias psa="ps auxf"
@@ -75,6 +76,7 @@ alias df='df -h'
 alias diff='diff --color'
 alias dum='du -hsx * | sort -rh | head -10'
 alias envs='env | sort | $PAGER'
+alias hr='fc -s'
 alias mkcd='function _mkcd(){ mkdir -p "$1" && cd "$1"; }; _mkcd'
 alias myip="ip addr show | grep 'inet ' | grep -v '127.0.0.1' | awk '{print \$2}' | cut -d/ -f 1 | head -n 1"
 alias path='echo -e ${PATH//:/\\n}'

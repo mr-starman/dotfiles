@@ -1,10 +1,12 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-HISTCONTROL=ignoreboth:erasedups # Erase duplicates
-HISTIGNORE=?:??                  # Ignore one and two letter commands
-HISTFILESIZE=99999               # Max size of history file
-HISTSIZE=99999                   # Amount of history to preserve
+HISTCONTROL=ignoreboth:erasedups    # Erase duplicates
+HISTIGNORE=?:??                     # Ignore one and two letter commands
+HISTFILESIZE=99999                  # Max size of history file
+HISTSIZE=99999                      # Amount of history to preserve
+HISTTIMEFORMAT="%F %T "             # Timestamp each command (useful for audit/logging)
+HISTIGNORE="*password*:sudo su:*ssh *"
 
 if [ -d "$HOME/.bin" ]; then
 	PATH="$HOME/.bin:$PATH"
@@ -16,6 +18,7 @@ fi
 
 shopt -s autocd
 shopt -s histappend
+shopt -s cmdhist
 
 export MY_PIES="jaypi pajen"
 export EDITOR=vim
