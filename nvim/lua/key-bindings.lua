@@ -7,7 +7,8 @@ vim.keymap.set('n', '<leader>cp', '<cmd>wincmd l \\| close<cr>')
 vim.keymap.set('n', '<leader>f', '/')
 vim.keymap.set('n', '<leader>h', '^')
 vim.keymap.set('n', '<leader>l', '$')
-vim.keymap.set('n', '<leader>m', '<cmd>update<cr><cmd>echo "compiling..."<cr><cmd>silent make %<cr><cr><cmd>cwindow<cr><cmd>echo ""<cr>')
+vim.keymap.set('n', '<leader>m',
+	'<cmd>update<cr><cmd>echo "compiling..."<cr><cmd>silent make %<cr><cr><cmd>cwindow<cr><cmd>echo ""<cr>')
 vim.keymap.set('n', '<leader>n', '<cmd>bn<cr>')
 vim.keymap.set('n', '<leader>o', 'o<esc>')
 vim.keymap.set('n', '<leader>O', 'O<esc>')
@@ -22,6 +23,7 @@ vim.keymap.set('n', 'n', 'nzz')
 vim.keymap.set('n', 'N', 'Nzz')
 vim.keymap.set('n', 'Y', 'y$')
 vim.keymap.set('n', 'v', '<c-v>')
+vim.keymap.set('n', 'U', '<c-r>')
 
 -- Insert mode mappings
 vim.keymap.set('i', '(', '()<esc>i', { noremap = true })
