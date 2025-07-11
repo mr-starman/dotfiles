@@ -54,6 +54,9 @@ return {
 			lspconfig.pylsp.setup {
 				capabilities = capabilities,
 			}
+			lspconfig.jdtls.setup {
+				capabilities = capabilities,
+			}
 			lspconfig.rust_analyzer.setup {
 				settings = {
 					['rust-analyzer'] = {
