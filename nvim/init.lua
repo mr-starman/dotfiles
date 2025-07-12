@@ -11,11 +11,12 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require 'vim-options'
-require 'key-bindings'
-require 'autocommands'
+require 'config.vim-options'
+require 'config.key-bindings'
+require 'config.autocommands'
 -- TODO: Move to custom Lazy plug?
-require 'cobol-stuff'
+require 'config.cobol-stuff'
+
 require('lazy').setup('plugins', {
 	ui = {
 		border = 'rounded',
