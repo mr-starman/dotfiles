@@ -1,3 +1,21 @@
+-- Detect current java version (e.g., 17 or 21)
+local function detect_java_version()
+	local handle = io.popen("java -version 2>&1")
+	local output = handle:read("*a")
+	handle:close()
+	local version = output:match('version "(%d+)')
+	return version and "JavaSE-" .. version or "JavaSE-17"
+end
+
+local function get_java_home()
+	local handle = io.popen("readlink -f $(which java) 2>/dev/null | sed 's:/bin/java::'")
+	if not handle then return "/usr/lib/jvm/default" end
+	local result = handle:read("*a") or ""
+	handle:close()
+	result = result:gsub("\n", "")
+	return result ~= "" and result or "/usr/lib/jvm/default"
+end
+
 return {
 	"mfussenegger/nvim-jdtls",
 	ft = { "java" },
@@ -18,8 +36,8 @@ return {
 					configuration = {
 						runtimes = {
 							{
-								name = "JavaSE-17",
-								path = "/usr/lib/jvm/java-17-openjdk/",
+								name = detect_java_version(),
+								path = get_java_home(),
 							},
 						},
 					},
