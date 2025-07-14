@@ -1,12 +1,18 @@
+#!/usr/bin/env bash
+
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
 HISTCONTROL=ignoreboth:erasedups    # Erase duplicates
-HISTIGNORE=?:??                     # Ignore one and two letter commands
+HISTIGNORE=(
+  "?:??"   # Ignore one- and two-letter commands
+  "ls"     # Example: ignore 'ls'
+  "cd"     # Example: ignore 'cd'
+  "*password*:sudo su:*ssh *"
+)
 HISTFILESIZE=99999                  # Max size of history file
 HISTSIZE=99999                      # Amount of history to preserve
 HISTTIMEFORMAT="%F %T "             # Timestamp each command (useful for audit/logging)
-HISTIGNORE="*password*:sudo su:*ssh *"
 
 if [ -d "$HOME/.bin" ]; then
 	PATH="$HOME/.bin:$PATH"
@@ -20,7 +26,6 @@ shopt -s autocd
 shopt -s histappend
 shopt -s cmdhist
 
-export MY_PIES="jaypi pajen"
 export EDITOR=vim
 export PAGER=less
 export BROWSER=brave
@@ -31,7 +36,6 @@ export FZF_DEFAULT_OPTS=" \
 --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
 --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
 --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
-export DOTNET_CLI_TELEMETRY_OPTOUT=1
 export GIT_PS1_SHOWDIRTYSTATE=1
 export GIT_PS1_SHOWSTASHSTATE=1
 export GIT_PS1_SHOWUNTRACKEDFILES=1
@@ -43,31 +47,38 @@ light_blue='\[\033[94m\]'
 light_red='\[\e[91m\]'
 reset='\[\e[m\]'
 
+# shellcheck disable=SC2154
 PROMPT_COMMAND='__git_ps1 "$light_magenta\u@\h:$light_blue\w$reset" "$(s=$?;[[ $s != 0 ]] && echo -n "$light_red($s)$reset")\\\$ "'
 
-source ~/.git-prompt.sh
+source "$HOME/.git-prompt.sh"
+
 BASH_COMPLETION_SCRIPT="/usr/share/bash-completion/bash_completion"
 if [ -f "$BASH_COMPLETION_SCRIPT" ]; then
+# shellcheck disable=SC1090
     source "$BASH_COMPLETION_SCRIPT"
 fi
 
 GIT_COMPLETION_SCRIPT1="/usr/share/bash-completion/completions/git"
 if [ -f "$GIT_COMPLETION_SCRIPT1" ]; then
+# shellcheck disable=SC1090
     source "$GIT_COMPLETION_SCRIPT1"
 fi
 
 GIT_COMPLETION_SCRIPT2="/usr/share/git/completion/git-completion.bash"
 if [ -f "$GIT_COMPLETION_SCRIPT2" ]; then
+# shellcheck disable=SC1090
     source "$GIT_COMPLETION_SCRIPT2"
 fi
 
 FZF_KEY_BINDING_SCRIPT="/usr/share/fzf/key-bindings.bash"
 if [ -f "$FZF_KEY_BINDING_SCRIPT" ]; then
+# shellcheck disable=SC1090
     source "$FZF_KEY_BINDING_SCRIPT"
 fi
 
 FZF_COMPLETION_SCRIPT2="/usr/share/fzf/completion.bash"
 if [ -f "$FZF_COMPLETION_SCRIPT2" ]; then
+# shellcheck disable=SC1090
     source "$FZF_COMPLETION_SCRIPT2"
 fi
 
