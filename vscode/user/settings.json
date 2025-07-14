@@ -1,5 +1,4 @@
 {
-    "workbench.colorTheme": "Catppuccin Mocha",
     "vim.leader": ",",
     "vim.sneakUseIgnorecaseAndSmartcase": true,
     "vim.timeout": 500,
@@ -48,5 +47,6 @@
         "editor.defaultFormatter": "vscode.typescript-language-features"
     },
     "workbench.iconTheme": "icons",
-    "breadcrumbs.enabled": false
+    "breadcrumbs.enabled": false,
+    "workbench.colorTheme": "Catppuccin Mocha"
 }
