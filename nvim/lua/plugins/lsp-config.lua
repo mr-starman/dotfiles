@@ -1,26 +1,42 @@
 return {
 	{
-		'williamboman/mason.nvim',
+		'mason-org/mason.nvim',
 		lazy = false,
 		config = function()
 			require('mason').setup {
 				ui = {
 					border = 'rounded',
+					check_outdated_packages_on_open = true,
+					auto_update_packages = true,
 				},
 			}
 		end,
 	},
 	{
-		'williamboman/mason-lspconfig.nvim',
+		'mason-org/mason-lspconfig.nvim',
 		lazy = false,
-		opts = {
-			auto_install = true,
-		},
+		config = function()
+			require('mason-lspconfig').setup({
+				ensure_installed = {},
+				automatic_installation = false,
+				automatic_setup = false,
+				automatic_enable = false,
+				handlers = nil,
+			})
+		end,
 	},
 	{
 		'neovim/nvim-lspconfig',
+		dependencies = {
+			{ "folke/neodev.nvim" },
+		},
 		lazy = false,
 		config = function()
+			if vim.g.lsp_config_loaded then
+				return
+			end
+			vim.g.lsp_config_loaded = true
+
 			local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 			local lspconfig = require 'lspconfig'
