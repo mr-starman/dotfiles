@@ -207,8 +207,8 @@ nnoremap <leader>f /
 vnoremap <leader>f /
 nnoremap <leader>r :call ReplaceWordWithCursor()<CR>
 nnoremap <leader>b ?
-nnoremap <leader>h ^
-nnoremap <leader>l $
+nnoremap gh ^
+nnoremap gl $
 nnoremap <leader>gg <cmd>GitGutterAll<cr>
 nnoremap <leader>b <cmd>Buffers<cr>
 nnoremap <leader>bl <cmd>BLines<cr>
