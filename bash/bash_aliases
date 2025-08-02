@@ -76,6 +76,7 @@ alias path='echo -e ${PATH//:/\\n}'
 alias ports='ss -tuln'
 alias pwo='sudo poweroff'
 alias rbn='sudo reboot now'
+alias vn='vim -u NONE -N'
 alias vpnstat='if [ "$(curl -s https://ipv6-only.api.5july.net/1.0/ipcheck | jq -r .connected)" = "true" ]; then echo -e "\e[32mconnected\e[0m"; else echo -e "\e[31mnot connected\e[0m"; fi'
 
 # nav
