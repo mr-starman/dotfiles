@@ -1,7 +1,27 @@
 {
+    "elixirLS.suggestSpecs": false,
+    "elixirLS.dialyzerEnabled": true,
+    "elixirLS.signatureAfterComplete": false,
+    "elixirLS.fetchDeps": false,
     "files.associations": {
-        "*.html.erb": "erb"
+        "*.html.erb": "erb",
+        "*.heex": "phoenix-heex"
     },
+     "[elixir]": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "JakeBecker.elixir-ls"
+    },
+
+    "[phoenix-heex]": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "JakeBecker.elixir-ls"
+    },
+    "emmet.includeLanguages": {
+        "elixir": "html",
+        "phoenix-heex": "html",
+        "html-eex": "html"
+    },
+    "emmet.triggerExpansionOnTab": true,
     "[erb]": {
         "editor.defaultFormatter": "aliariff.vscode-erb-beautify",
         "editor.formatOnSave": true
@@ -73,5 +93,6 @@
         "*.db3": "${capture}.${extname}-*",
         "*.sdb": "${capture}.${extname}-*",
         "*.s3db": "${capture}.${extname}-*"
-    }
+    },
+    "editor.fontFamily": "'JetBrains Mono', 'monospace', monospace"
 }
