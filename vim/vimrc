@@ -55,7 +55,7 @@ Plug 'rhysd/git-messenger.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'itchyny/vim-gitbranch'
-Plug 'SirVer/ultisnips'
+"Plug 'SirVer/ultisnips'
 Plug 'catppuccin/vim', { 'as': 'catppuccin' }
 Plug 'romainl/vim-cool'
 Plug 'christoomey/vim-tmux-navigator'
