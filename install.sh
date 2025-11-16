@@ -16,6 +16,7 @@ rm -f ~/.digrc
 rm -f ~/.vim
 rm -f ~/.config/nvim
 rm -rf ~/.config/alacritty
+rm -f ~/.config/fastfetch
 rm -f ~/.tmux.conf
 rm -f ~/.tmux
 rm -f ~/.config/Code/User/settings.json
@@ -37,6 +38,7 @@ ln -s ~/dotfiles/bash/digrc ~/.digrc
 ln -s ~/dotfiles/vim ~/.vim
 ln -s ~/dotfiles/nvim ~/.config/nvim
 ln -s ~/dotfiles/alacritty ~/.config/alacritty
+ln -s ~/dotfiles/fastfetch ~/.config/fastfetch
 ln -s ~/dotfiles/tmux ~/.tmux
 ln -s ~/dotfiles/tmux/tmux.conf ~/.tmux.conf
 ln -s ~/dotfiles/vscode/user/settings.json ~/.config/Code/User/settings.json
