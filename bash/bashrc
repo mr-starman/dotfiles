@@ -27,7 +27,7 @@ shopt -s histappend
 shopt -s cmdhist
 
 export EDITOR=vim
-export PAGER="bat --paging=always"
+export PAGER="less"
 export MANPAGER="sh -c 'man -P cat \"$0\" | col -bx | bat --language=man --plain --paging=always'"
 export BROWSER=brave
 export LESS="FRsX"
