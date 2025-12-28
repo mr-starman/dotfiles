@@ -28,7 +28,7 @@ shopt -s cmdhist
 
 export EDITOR=vim
 export PAGER="less"
-export MANPAGER="sh -c 'man -P cat \"$0\" | col -bx | bat --language=man --plain --paging=always'"
+export MANPAGER="less"
 export BROWSER=brave
 export LESS="FRsX"
 export LS_COLORS='di=94:ln=96:ex=91'
