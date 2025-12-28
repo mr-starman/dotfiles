@@ -27,8 +27,8 @@ shopt -s histappend
 shopt -s cmdhist
 
 export EDITOR=vim
-export PAGER="less"
-export MANPAGER="less"
+export PAGER=less
+export MANPAGER=less
 export BROWSER=brave
 export LESS="FRsX"
 export LS_COLORS='di=94:ln=96:ex=91'
