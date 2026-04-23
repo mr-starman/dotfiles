@@ -9,6 +9,8 @@ alias f='_f() { local pattern="$1"; local search_dir="${2:-.}"; find "${search_d
 alias ff='clear && fastfetch -c $HOME/.config/fastfetch/default.jsonc'
 alias g='git'
 alias h='history'
+alias mk='minikube'
+alias k='minikube kubectl'
 alias m='$PAGER'
 alias n='nvim'
 alias p='ping -c 3'
