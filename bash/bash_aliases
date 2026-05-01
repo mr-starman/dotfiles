@@ -86,6 +86,7 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
+alias cl='_cl() { cd "$1" && ls -lah | less; }; _cl'
 
 #snapper
 alias snap='snapper -c root -d'
