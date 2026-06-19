@@ -94,5 +94,6 @@
         "*.sdb": "${capture}.${extname}-*",
         "*.s3db": "${capture}.${extname}-*"
     },
-    "editor.fontFamily": "'JetBrains Mono', 'monospace', monospace"
+    "editor.fontFamily": "'JetBrains Mono', 'monospace', monospace",
+    "chat.viewSessions.orientation": "stacked"
 }
