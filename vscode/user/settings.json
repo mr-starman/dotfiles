@@ -7,11 +7,10 @@
         "*.html.erb": "erb",
         "*.heex": "phoenix-heex"
     },
-     "[elixir]": {
+    "[elixir]": {
         "editor.formatOnSave": true,
         "editor.defaultFormatter": "JakeBecker.elixir-ls"
     },
-
     "[phoenix-heex]": {
         "editor.formatOnSave": true,
         "editor.defaultFormatter": "JakeBecker.elixir-ls"
@@ -72,6 +71,13 @@
     },
     "[typescript]": {
         "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit"
+        }
     },
     "breadcrumbs.enabled": false,
     "workbench.colorTheme": "Catppuccin Mocha",

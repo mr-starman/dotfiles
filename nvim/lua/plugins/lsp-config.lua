@@ -52,6 +52,8 @@ return {
         bashls      = { capabilities = capabilities },
         pylsp       = { capabilities = capabilities },
         jdtls       = { capabilities = capabilities },
+        basedpyright = { capabilities = capabilities },
+        ruff = { capabilities = capabilities },
         rust_analyzer = {
           capabilities = capabilities,
           settings = {
@@ -84,7 +86,9 @@ return {
           if not c then
             return
           end
-
+          if c and c.name == "ruff" then
+             c.server_capabilities.hoverProvider = false
+          end
           -- Format the current buffer on save
           vim.api.nvim_create_autocmd('BufWritePre', {
             buffer = args.buf,
