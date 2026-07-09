@@ -1,7 +1,7 @@
 -- Code Tree Support / Syntax Highlighting
 return {
   "nvim-treesitter/nvim-treesitter",
-  branch = "master",
+  branch = "main",
   event = "VeryLazy",
   build = ":TSUpdate",
 
