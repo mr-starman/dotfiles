@@ -1,33 +1,46 @@
--- Code Tree Support / Syntax Highlighting
 return {
   "nvim-treesitter/nvim-treesitter",
   branch = "main",
-  event = "VeryLazy",
+  lazy = false,
   build = ":TSUpdate",
 
-  dependencies = {
-    "nvim-treesitter/nvim-treesitter-textobjects",
-  },
+  config = function()
+    local treesitter = require("nvim-treesitter")
 
-  opts = {
-    ensure_installed = {
+    treesitter.setup({
+      install_dir = vim.fn.stdpath("data") .. "/site",
+    })
+
+    treesitter.install({
+      "python",
       "lua",
+      "vim",
+      "vimdoc",
+      "query",
+      "bash",
+      "json",
+      "yaml",
+      "toml",
       "markdown",
       "markdown_inline",
-    },
+    })
 
-    auto_install = true,
-
-    highlight = {
-      enable = true,
-    },
-
-    indent = {
-      enable = true,
-    },
-  },
-
-  config = function(_, opts)
-    require("nvim-treesitter.configs").setup(opts)
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = {
+        "python",
+        "lua",
+        "vim",
+        "vimdoc",
+        "query",
+        "bash",
+        "json",
+        "yaml",
+        "toml",
+        "markdown",
+      },
+      callback = function(args)
+        vim.treesitter.start(args.buf)
+      end,
+    })
   end,
 }
