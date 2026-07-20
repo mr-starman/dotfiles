@@ -101,5 +101,6 @@
         "*.s3db": "${capture}.${extname}-*"
     },
     "editor.fontFamily": "'JetBrains Mono', 'monospace', monospace",
-    "chat.viewSessions.orientation": "stacked"
+    "chat.viewSessions.orientation": "stacked",
+    "chat.disableAIFeatures": true
 }
