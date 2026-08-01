@@ -86,8 +86,8 @@ hi link EasyMotionShade Comment
 " colorscheme
 " -----------------------------------------------
 
-colorscheme catppuccin_mocha
-"
+silent! colorscheme catppuccin_mocha
+
 "------------------------------------------------
 " highlighted yank
 "------------------------------------------------
