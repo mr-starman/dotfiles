@@ -1,0 +1,26 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+
+  "autoupdate": false,
+  "share": "manual",
+
+  "permission": {
+    "bash": {
+      "*": "ask",
+      "git status*": "allow",
+      "git diff*": "allow",
+      "git log*": "allow",
+      "git commit*": "ask",
+      "git push*": "ask"
+    }
+  },
+
+  "watcher": {
+    "ignore": [
+      "node_modules/**",
+      "target/**",
+      "dist/**",
+      ".git/**"
+    ]
+  }
+}

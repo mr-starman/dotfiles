@@ -26,6 +26,7 @@ rm -rf ~/.config/bat
 rm -rf ~/.local/bin/listify
 rm -rf ~/.local/bin/listifyq
 rm -rf ~/.local/bin/maintenance.sh
+rm -rf ~/.config/opencode
 
 ln -s ~/dotfiles/bash/bash_aliases ~/.bash_aliases
 ln -s ~/dotfiles/bash/bash_logout ~/.bash_logout
@@ -45,6 +46,7 @@ ln -s ~/dotfiles/vscode/user/settings.json ~/.config/Code/User/settings.json
 ln -s ~/dotfiles/vscode/user/snippets ~/.config/Code/User/snippets
 ln -s ~/dotfiles/vscode/user/keybindings.json ~/.config/Code/User/keybindings.json
 ln -s ~/dotfiles/bat ~/.config/bat
+ln -s ~/dotfiles/opencode ~/.config/opencode
 
 ln -s ~/dotfiles/scripts/listify ~/.local/bin/listify
 ln -s ~/dotfiles/scripts/listifyq ~/.local/bin/listifyq
