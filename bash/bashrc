@@ -31,7 +31,8 @@ export PAGER=less
 export MANPAGER=less
 export BROWSER=brave
 export LESS="FRsX"
-export LS_COLORS='di=94:ln=96:ex=91'
+export LS_COLORS=$LS_COLORS:'di=34:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43:mh=01;37;44:'
+#export LS_COLORS='di=94:ln=96:ex=91'
 export FZF_DEFAULT_COMMAND='rg --files'
 export FZF_DEFAULT_OPTS=" \
 --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \

@@ -14,7 +14,7 @@ set hidden
 set history=500
 set hlsearch
 set ignorecase
-set langmap+=ö`
+"set langmap+=ö`
 set langremap
 set laststatus=2
 set mouse=
