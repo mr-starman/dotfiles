@@ -34,7 +34,6 @@ vim.keymap.set("n", "v", "<c-v>", { desc = "Visual block mode" })
 vim.keymap.set("n", "U", "<c-r>", { desc = "Redo" })
 
 -- Insert mode mappings
-vim.keymap.set("i", "(", "()<esc>i", { desc = "Insert parens", noremap = true })
 vim.keymap.set("i", "<c-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move line down" })
 vim.keymap.set("i", "<c-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move line up" })
 vim.keymap.set("i", "jj", "<esc>", { desc = "Exit insert mode" })

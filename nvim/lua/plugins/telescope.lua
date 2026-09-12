@@ -47,6 +47,13 @@ return {
         end,
         desc = "Search current buffer",
       },
+      {
+        "<leader>bg",
+        function()
+          require("telescope.builtin").live_grep({ grep_open_files = true })
+        end,
+        desc = "Grep open buffers",
+      },
     },
     config = function()
       local telescope = require("telescope")

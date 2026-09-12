@@ -7,7 +7,7 @@ return {
         ui = {
           border = "rounded",
           check_outdated_packages_on_open = true,
-          auto_update_packages = true,
+          auto_update_packages = false,
         },
       })
     end,
