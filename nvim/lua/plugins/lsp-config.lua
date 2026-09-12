@@ -17,7 +17,18 @@ return {
     lazy = false,
     config = function()
       require("mason-lspconfig").setup({
-        ensure_installed = {},
+        ensure_installed = {
+          "basedpyright",
+          "bashls",
+          "gopls",
+          "html",
+          "lua_ls",
+          "ruff",
+          "rust_analyzer",
+          "tailwindcss",
+          "taplo",
+          "ts_ls",
+        },
         automatic_installation = false,
         automatic_setup = false,
         automatic_enable = false,
