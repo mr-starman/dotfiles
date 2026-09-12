@@ -31,8 +31,8 @@ alias lst='ls -lth --color | $PAGER'
 
 #grep
 alias grep='grep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias egrep='egrep --color=auto'
+alias fgrep='grep --color=auto -F'
+alias egrep='grep --color=auto -E'
 alias hg='history | grep'
 
 #ps

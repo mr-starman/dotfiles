@@ -1,3 +1,5 @@
 .netrwhist
 opencode/bun.lock
 opencode/node_modules/
+vim/plugged/
+tmux/plugins/
