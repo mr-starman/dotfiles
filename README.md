@@ -5,7 +5,7 @@ Personal dotfiles managed as symlinks from `$HOME`.
 ## Install
 
 ```sh
-git clone git@github.com:mr-starman/dotfiles.git && cd dotfiles
+git clone --recurse-submodules git@github.com:mr-starman/dotfiles.git && cd dotfiles
 ./install.sh
 ```
 
@@ -13,11 +13,12 @@ The installer:
 
 - Symlinks shell, Git, editor, terminal, and tool configs into `~/`
 - Creates targets inside directories (`~/.config/...`) as needed
-- Backs up existing files/directories to `<target>.backup.<timestamp>` before replacing them (files and existing symlinks are replaced without a backup)
+- Backs up existing files, directories, and symlinks to `<target>.backup.<timestamp>` before replacing them
 - Bootstraps [TPM](https://github.com/tmux-plugins/tpm) and [vim-plug](https://github.com/junegunn/vim-plug)
 - Skips missing sources with a warning
 
-Run `./install.sh --dry-run` to preview actions without changing anything, or `--help` for usage.
+Run `./install.sh --dry-run` to preview actions without changing anything. Use
+`--skip-bootstrap` for an offline install that does not download submodules or plugin managers.
 
 ## Post-install
 

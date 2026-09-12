@@ -5,6 +5,7 @@ set -euo pipefail
 DOTFILES_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 BACKUP_SUFFIX="backup.$(date +%Y%m%d%H%M%S)"
 DRY_RUN=false
+SKIP_BOOTSTRAP=false
 
 show_help() {
   cat <<EOF
@@ -12,6 +13,8 @@ Usage: $(basename "$0") [OPTIONS]
 
 Options:
   --dry-run    Print what would be done without making changes
+  --skip-bootstrap
+               Do not download Git submodules or plugin managers
   --help       Display this help message
 
 Sets up dotfiles by symlinking configs and bootstrapping plugin managers.
@@ -22,6 +25,7 @@ EOF
 while [[ $# -gt 0 ]]; do
   case "$1" in
     --dry-run) DRY_RUN=true; shift ;;
+    --skip-bootstrap) SKIP_BOOTSTRAP=true; shift ;;
     --help) show_help ;;
     *) echo "Unknown option: $1. Use --help for usage."; exit 1 ;;
   esac
@@ -45,10 +49,11 @@ link_path() {
   fi
 
   if $DRY_RUN; then
-    mkdir -p "$(dirname -- "$target")" 2>/dev/null || true
-    if [ -L "$target" ] || [ -f "$target" ]; then
-      printf '[dry-run] rm -f -- %s\n' "$target"
-    elif [ -e "$target" ]; then
+    printf '[dry-run] mkdir -p -- %s\n' "$(dirname -- "$target")"
+    if [ -L "$target" ] && [ "$(readlink -- "$target")" = "$source" ]; then
+      printf 'Already linked: %s\n' "$target"
+      return
+    elif [ -L "$target" ] || [ -e "$target" ]; then
       printf '[dry-run] mv -- %s %s.%s\n' "$target" "$target" "$BACKUP_SUFFIX"
     fi
     printf '[dry-run] ln -s -- %s %s\n' "$source" "$target"
@@ -57,13 +62,22 @@ link_path() {
 
   mkdir -p "$(dirname -- "$target")"
 
-  if [ -L "$target" ] || [ -f "$target" ]; then
-    rm -f -- "$target"
-  elif [ -e "$target" ]; then
+  if [ -L "$target" ] && [ "$(readlink -- "$target")" = "$source" ]; then
+    printf 'Already linked: %s\n' "$target"
+    return
+  elif [ -L "$target" ] || [ -e "$target" ]; then
     mv -- "$target" "$target.$BACKUP_SUFFIX"
   fi
 
   ln -s -- "$source" "$target"
+}
+
+bootstrap_submodules() {
+  if $SKIP_BOOTSTRAP || [ ! -f "$DOTFILES_DIR/.gitmodules" ]; then
+    return
+  fi
+  printf 'Initializing pinned Git submodules...\n'
+  run git -C "$DOTFILES_DIR" submodule update --init --recursive
 }
 
 install_tpm() {
@@ -93,6 +107,8 @@ run mkdir -p "$HOME/.config"
 run mkdir -p "$HOME/.vim_undo_files"
 run mkdir -p "$HOME/.config/Code/User"
 run mkdir -p "$HOME/.local/bin"
+
+bootstrap_submodules
 
 # Shell
 link_path "$DOTFILES_DIR/bash/bash_aliases" "$HOME/.bash_aliases"
@@ -130,8 +146,10 @@ link_path "$DOTFILES_DIR/scripts/listifyq" "$HOME/.local/bin/listifyq"
 link_path "$DOTFILES_DIR/scripts/maintenance.sh" "$HOME/.local/bin/maintenance.sh"
 
 # Plugin managers
-install_tpm
-install_vim_plug
+if ! $SKIP_BOOTSTRAP; then
+  install_tpm
+  install_vim_plug
+fi
 
 if ! $DRY_RUN; then
   printf '\nDone. Restart your shell or run: source ~/.bashrc\n'

@@ -38,6 +38,10 @@ while [[ $# -gt 0 ]]; do
       shift
       ;;
     -a)
+      if [[ $# -lt 2 || -z "$2" ]]; then
+        echo "❌ -a requires an AUR helper (paru, yay, or none)." >&2
+        exit 2
+      fi
       AUR_HELPER="$2"
       shift 2
       ;;
@@ -50,6 +54,14 @@ while [[ $# -gt 0 ]]; do
       ;;
   esac
 done
+
+case "$AUR_HELPER" in
+  paru|yay|none) ;;
+  *)
+    echo "❌ Unsupported AUR helper: $AUR_HELPER (use paru, yay, or none)." >&2
+    exit 2
+    ;;
+esac
 
 # Ensure log directory exists
 sudo mkdir -p "$LOG_DIR"
@@ -103,8 +115,15 @@ run_logged sudo journalctl --vacuum-time=2weeks
 run_logged sudo journalctl --vacuum-size=100M
 
 log "🩺 Checking system health..."
-run_logged systemctl --failed
-run_logged sudo pacman -Qk
+HEALTH_ISSUES=false
+if ! run_logged systemctl --failed; then
+  log "⚠️ systemd reports failed units; see the log for details."
+  HEALTH_ISSUES=true
+fi
+if ! run_logged sudo pacman -Qk; then
+  log "⚠️ Package integrity checks reported problems; see the log for details."
+  HEALTH_ISSUES=true
+fi
 
 if command -v reflector &> /dev/null; then
   log "🌐 Updating mirrorlist..."
@@ -120,4 +139,8 @@ else
   log "ℹ️ Flatpak not installed. Skipping Flatpak cleanup."
 fi
 
-log "✅ Done: Maintenance completed at $(date)."
+if $HEALTH_ISSUES; then
+  log "⚠️ Done with health warnings at $(date)."
+else
+  log "✅ Done: Maintenance completed at $(date)."
+fi
