@@ -85,11 +85,10 @@ return {
 
       -- Register and enable each server
       for name, cfg in pairs(servers) do
-        vim.lsp.config[name] = cfg
+        vim.lsp.config(name, cfg)
         vim.lsp.enable(name)
       end
 
-      -- Autocommands
       vim.api.nvim_create_autocmd("LspAttach", {
         callback = function(args)
           local c = vim.lsp.get_client_by_id(args.data.client_id)
@@ -99,22 +98,15 @@ return {
           if c and c.name == "ruff" then
             c.server_capabilities.hoverProvider = false
           end
-          -- Format the current buffer on save
-          vim.api.nvim_create_autocmd("BufWritePre", {
-            buffer = args.buf,
-            callback = function()
-              vim.lsp.buf.format({ bufnr = args.buf, id = c.id })
-            end,
-          })
+
+          local opts = { buffer = args.buf }
+          vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+          vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, opts)
+          vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, opts)
+          vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+          vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, opts)
         end,
       })
-
-      -- Keymaps
-      vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
-      vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
-      vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {})
-      vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
-      vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, {})
     end,
   },
 }
