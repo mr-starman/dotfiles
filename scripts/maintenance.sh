@@ -64,18 +64,26 @@ log() {
   fi
 }
 
+run_logged() {
+  if $VERBOSE; then
+    "$@" 2>&1 | tee -a "$LOG_FILE"
+  else
+    "$@" >> "$LOG_FILE" 2>&1
+  fi
+}
+
 log "\n🕒 $(date): Starting Arch Linux system maintenance..."
 
 log "📦 Updating system packages..."
-sudo pacman -Syu --noconfirm &>> "$LOG_FILE"
+run_logged sudo pacman -Syu --noconfirm
 
 log "🧹 Cleaning package cache..."
-sudo paccache -r &>> "$LOG_FILE"
+run_logged sudo paccache -r
 
 log "🗑️ Removing orphaned packages..."
-orphans=$(pacman -Qtdq || true)
-if [[ -n "$orphans" ]]; then
-  sudo pacman -Rns --noconfirm $orphans &>> "$LOG_FILE"
+mapfile -t orphans < <(pacman -Qtdq || true)
+if [[ ${#orphans[@]} -gt 0 ]]; then
+  run_logged sudo pacman -Rns --noconfirm "${orphans[@]}"
 else
   log "✅ No orphaned packages found."
 fi
@@ -85,29 +93,29 @@ if [[ "$AUR_HELPER" == "none" ]]; then
   log "🚫 Skipping AUR package updates."
 elif command -v "$AUR_HELPER" &> /dev/null; then
   log "📦 Updating AUR packages with '$AUR_HELPER'..."
-  "$AUR_HELPER" -Syu --noconfirm &>> "$LOG_FILE"
+  run_logged "$AUR_HELPER" -Syu --noconfirm
 else
   log "⚠️ AUR helper '$AUR_HELPER' not found. Skipping AUR updates."
 fi
 
 log "🧾 Cleaning journal logs..."
-sudo journalctl --vacuum-time=2weeks &>> "$LOG_FILE"
-sudo journalctl --vacuum-size=100M &>> "$LOG_FILE"
+run_logged sudo journalctl --vacuum-time=2weeks
+run_logged sudo journalctl --vacuum-size=100M
 
 log "🩺 Checking system health..."
-systemctl --failed &>> "$LOG_FILE"
-sudo pacman -Qk &>> "$LOG_FILE"
+run_logged systemctl --failed
+run_logged sudo pacman -Qk
 
 if command -v reflector &> /dev/null; then
   log "🌐 Updating mirrorlist..."
-  sudo reflector --latest 10 --protocol https --sort rate --save /etc/pacman.d/mirrorlist &>> "$LOG_FILE"
+  run_logged sudo reflector --latest 10 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
 else
   log "⚠️ 'reflector' not found. Skipping mirrorlist update."
 fi
 
 if command -v flatpak &> /dev/null; then
   log "🧹 Removing unused Flatpak packages..."
-  flatpak uninstall --unused -y &>> "$LOG_FILE"
+  run_logged flatpak uninstall --unused -y
 else
   log "ℹ️ Flatpak not installed. Skipping Flatpak cleanup."
 fi

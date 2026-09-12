@@ -52,6 +52,7 @@ reset='\[\e[m\]'
 # shellcheck disable=SC2154
 PROMPT_COMMAND='__git_ps1 "$light_magenta\u@\h:$light_blue\w$reset" "$(s=$?;[[ $s != 0 ]] && echo -n "$light_red($s)$reset")\\\$ "'
 
+# shellcheck source=/dev/null
 source "$HOME/.git-prompt.sh"
 
 BASH_COMPLETION_SCRIPT="/usr/share/bash-completion/bash_completion"
@@ -84,11 +85,13 @@ if [ -f "$FZF_COMPLETION_SCRIPT2" ]; then
     source "$FZF_COMPLETION_SCRIPT2"
 fi
 
+# shellcheck source=/dev/null
 source "$HOME/.bash_aliases"
 
 bind -f ~/.inputrc
 
 if [ -f "$HOME/.bashrc_local" ]; then
+    # shellcheck source=/dev/null
     source "$HOME/.bashrc_local"
 fi
 
