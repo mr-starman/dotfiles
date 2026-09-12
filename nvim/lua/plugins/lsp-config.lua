@@ -15,6 +15,9 @@ return {
   {
     "mason-org/mason-lspconfig.nvim",
     lazy = false,
+    dependencies = {
+      "mason-org/mason.nvim",
+    },
     config = function()
       require("mason-lspconfig").setup({
         ensure_installed = {
@@ -35,6 +38,26 @@ return {
         handlers = nil,
       })
     end,
+  },
+  {
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    dependencies = {
+      "mason-org/mason.nvim",
+    },
+    lazy = false,
+    cmd = { "MasonToolsInstall", "MasonToolsUpdate" },
+    opts = {
+      ensure_installed = {
+        "black",
+        "delve",
+        "goimports",
+        "isort",
+        "prettier",
+        "shfmt",
+        "stylua",
+        "taplo",
+      },
+    },
   },
   {
     "neovim/nvim-lspconfig",
