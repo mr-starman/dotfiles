@@ -1,53 +1,54 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-mkdir -p ~/.config
-mkdir -p ~/.vim_undo_files
-mkdir -p ~/.config/Code/User
-mkdir -p ~/.local/bin
+set -euo pipefail
 
-rm -f ~/.bash_aliases
-rm -f ~/.bash_logout
-rm -f ~/.bash_profile
-rm -f ~/.bashrc
-rm -f ~/.gitconfig
-rm -f ~/.git-prompt.sh
-rm -f ~/.inputrc
-rm -f ~/.digrc
-rm -f ~/.vim
-rm -f ~/.config/nvim
-rm -rf ~/.config/alacritty
-rm -f ~/.config/fastfetch
-rm -f ~/.tmux.conf
-rm -f ~/.tmux
-rm -f ~/.config/Code/User/settings.json
-rm -rf ~/.config/Code/User/snippets
-rm -f ~/.config/Code/User/keybindings.json
-rm -rf ~/.config/bat
-rm -rf ~/.local/bin/listify
-rm -rf ~/.local/bin/listifyq
-rm -rf ~/.local/bin/maintenance.sh
-rm -rf ~/.config/opencode
+DOTFILES_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+BACKUP_SUFFIX="backup.$(date +%Y%m%d%H%M%S)"
 
-ln -s ~/dotfiles/bash/bash_aliases ~/.bash_aliases
-ln -s ~/dotfiles/bash/bash_logout ~/.bash_logout
-ln -s ~/dotfiles/bash/bash_profile ~/.bash_profile
-ln -s ~/dotfiles/bash/bashrc ~/.bashrc
-ln -s ~/dotfiles/git/gitconfig ~/.gitconfig
-ln -s ~/dotfiles/git/git-prompt.sh ~/.git-prompt.sh
-ln -s ~/dotfiles/bash/inputrc ~/.inputrc
-ln -s ~/dotfiles/bash/digrc ~/.digrc
-ln -s ~/dotfiles/vim ~/.vim
-ln -s ~/dotfiles/nvim ~/.config/nvim
-ln -s ~/dotfiles/alacritty ~/.config/alacritty
-ln -s ~/dotfiles/fastfetch ~/.config/fastfetch
-ln -s ~/dotfiles/tmux ~/.tmux
-ln -s ~/dotfiles/tmux/tmux.conf ~/.tmux.conf
-ln -s ~/dotfiles/vscode/user/settings.json ~/.config/Code/User/settings.json
-ln -s ~/dotfiles/vscode/user/snippets ~/.config/Code/User/snippets
-ln -s ~/dotfiles/vscode/user/keybindings.json ~/.config/Code/User/keybindings.json
-ln -s ~/dotfiles/bat ~/.config/bat
-ln -s ~/dotfiles/opencode ~/.config/opencode
+link_path() {
+  local source="$1"
+  local target="$2"
 
-ln -s ~/dotfiles/scripts/listify ~/.local/bin/listify
-ln -s ~/dotfiles/scripts/listifyq ~/.local/bin/listifyq
-ln -s ~/dotfiles/scripts/maintenance.sh ~/.local/bin/maintenance.sh
+  if [ ! -e "$source" ]; then
+    printf 'Skipping missing source: %s\n' "$source" >&2
+    return
+  fi
+
+  mkdir -p "$(dirname -- "$target")"
+
+  if [ -L "$target" ] || [ -f "$target" ]; then
+    rm -f -- "$target"
+  elif [ -e "$target" ]; then
+    mv -- "$target" "$target.$BACKUP_SUFFIX"
+  fi
+
+  ln -s -- "$source" "$target"
+}
+
+mkdir -p "$HOME/.config"
+mkdir -p "$HOME/.vim_undo_files"
+mkdir -p "$HOME/.config/Code/User"
+mkdir -p "$HOME/.local/bin"
+
+link_path "$DOTFILES_DIR/bash/bash_aliases" "$HOME/.bash_aliases"
+link_path "$DOTFILES_DIR/bash/bash_logout" "$HOME/.bash_logout"
+link_path "$DOTFILES_DIR/bash/bash_profile" "$HOME/.bash_profile"
+link_path "$DOTFILES_DIR/bash/bashrc" "$HOME/.bashrc"
+link_path "$DOTFILES_DIR/git/gitconfig" "$HOME/.gitconfig"
+link_path "$DOTFILES_DIR/git/git-prompt.sh" "$HOME/.git-prompt.sh"
+link_path "$DOTFILES_DIR/bash/inputrc" "$HOME/.inputrc"
+link_path "$DOTFILES_DIR/bash/digrc" "$HOME/.digrc"
+link_path "$DOTFILES_DIR/vim" "$HOME/.vim"
+link_path "$DOTFILES_DIR/nvim" "$HOME/.config/nvim"
+link_path "$DOTFILES_DIR/alacritty" "$HOME/.config/alacritty"
+link_path "$DOTFILES_DIR/fastfetch" "$HOME/.config/fastfetch"
+link_path "$DOTFILES_DIR/tmux" "$HOME/.tmux"
+link_path "$DOTFILES_DIR/tmux/tmux.conf" "$HOME/.tmux.conf"
+link_path "$DOTFILES_DIR/vscode/user/settings.json" "$HOME/.config/Code/User/settings.json"
+link_path "$DOTFILES_DIR/vscode/user/keybindings.json" "$HOME/.config/Code/User/keybindings.json"
+link_path "$DOTFILES_DIR/bat" "$HOME/.config/bat"
+link_path "$DOTFILES_DIR/opencode" "$HOME/.config/opencode"
+
+link_path "$DOTFILES_DIR/scripts/listify" "$HOME/.local/bin/listify"
+link_path "$DOTFILES_DIR/scripts/listifyq" "$HOME/.local/bin/listifyq"
+link_path "$DOTFILES_DIR/scripts/maintenance.sh" "$HOME/.local/bin/maintenance.sh"
