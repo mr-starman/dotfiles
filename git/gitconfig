@@ -12,7 +12,7 @@
     sort = -committerdate
 
 [tag]
-    sort = version:refnam
+	sort = version:refname
 
 [diff]
 	algorithm = histogram
@@ -37,6 +37,8 @@
 [rerere] 
 	enabled = true
 	autoupdate = true
+
+[rebase]
 	autoSquash = true
 	autoStash = true
 	updateRefs = true
