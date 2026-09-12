@@ -4,12 +4,8 @@
 [[ $- != *i* ]] && return
 
 HISTCONTROL=ignoreboth:erasedups    # Erase duplicates
-HISTIGNORE=(
-  "?:??"   # Ignore one- and two-letter commands
-  "ls"     # Example: ignore 'ls'
-  "cd"     # Example: ignore 'cd'
-  "*password*:sudo su:*ssh *"
-)
+# HISTIGNORE is a colon-separated scalar, not a Bash array.
+HISTIGNORE='?:??:ls:cd:*password*:sudo su:*ssh *'
 HISTFILESIZE=99999                  # Max size of history file
 HISTSIZE=99999                      # Amount of history to preserve
 HISTTIMEFORMAT="%F %T "             # Timestamp each command (useful for audit/logging)
@@ -97,4 +93,3 @@ fi
 
 # opencode
 export PATH="$HOME/.opencode/bin:$PATH"
-export PATH="$HOME/.local/bin:$PATH"

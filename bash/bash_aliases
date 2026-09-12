@@ -14,7 +14,19 @@ alias k='minikube kubectl'
 alias m='$PAGER'
 alias n='nvim'
 alias p='ping -c 3'
-alias u='(command -v pacman > /dev/null && sudo pacman -Syu --noconfirm && yay -Syu --noconfirm && yay -Yc --noconfirm) || (sudo apt update && sudo apt upgrade -y && sudo apt autoclean -y && sudo apt autoremove -y && sudo apt autopurge -y)'
+u() {
+  if command -v pacman >/dev/null; then
+    sudo pacman -Syu || return
+    if command -v yay >/dev/null; then
+      yay -Syu && yay -Yc
+    fi
+  elif command -v apt >/dev/null; then
+    sudo apt update && sudo apt upgrade && sudo apt autoclean && sudo apt autoremove
+  else
+    printf 'No supported package manager found.\n' >&2
+    return 1
+  fi
+}
 alias uz='7z x'
 alias v=vim
 alias z='7z a -t7z -m0=lzma2 -mx=9 -mhe=on -p -r'

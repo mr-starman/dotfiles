@@ -5,7 +5,7 @@ Personal dotfiles managed as symlinks from `$HOME`.
 ## Install
 
 ```sh
-git clone --recurse-submodules git@github.com:mr-starman/dotfiles.git && cd dotfiles
+git clone git@github.com:mr-starman/dotfiles.git && cd dotfiles
 ./install.sh
 ```
 
@@ -14,11 +14,11 @@ The installer:
 - Symlinks shell, Git, editor, terminal, and tool configs into `~/`
 - Creates targets inside directories (`~/.config/...`) as needed
 - Backs up existing files, directories, and symlinks to `<target>.backup.<timestamp>` before replacing them
-- Bootstraps [TPM](https://github.com/tmux-plugins/tpm) and [vim-plug](https://github.com/junegunn/vim-plug)
+- Bootstraps [TPM](https://github.com/tmux-plugins/tpm); vim-plug is committed in the repository
 - Skips missing sources with a warning
 
 Run `./install.sh --dry-run` to preview actions without changing anything. Use
-`--skip-bootstrap` for an offline install that does not download submodules or plugin managers.
+`--skip-bootstrap` for an offline install that does not download TPM.
 
 ## Post-install
 
@@ -30,6 +30,20 @@ Run `./install.sh --dry-run` to preview actions without changing anything. Use
 
 After installing tmux plugins, start a tmux session and load the [Catppuccin theme](https://github.com/catppuccin/tmux) via the status line.
 
+## System maintenance
+
+`maintenance.sh` targets Arch Linux. It prompts before package changes by default:
+
+```sh
+maintenance.sh --dry-run
+maintenance.sh --mode update
+maintenance.sh --mode clean
+maintenance.sh --mode health
+```
+
+Pass `--yes` only when noninteractive package operations are intentional. Use
+`--help` to see all options, including selection of `yay`, `paru`, or no AUR helper.
+
 ## Layout
 
 | Path | Manages |
@@ -39,7 +53,7 @@ After installing tmux plugins, start a tmux session and load the [Catppuccin the
 | `vim/` | `~/.vim` (config + vendored vim-plug) |
 | `nvim/` | `~/.config/nvim` (Lazy.nvim, plugin versions pinned in `nvim/lazy-lock.json`) |
 | `alacritty/` | `~/.config/alacritty` |
-| `tmux/` | `~/.tmux` + `~/.tmux.conf` (TPM plugins under `tmux/plugins/`) |
+| `tmux/` | `~/.tmux` + `~/.tmux.conf` (plugins managed by TPM under `tmux/plugins/`) |
 | `fastfetch/` | `~/.config/fastfetch` |
 | `bat/` | `~/.config/bat` |
 | `opencode/` | `~/.config/opencode` |

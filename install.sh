@@ -14,10 +14,10 @@ Usage: $(basename "$0") [OPTIONS]
 Options:
   --dry-run    Print what would be done without making changes
   --skip-bootstrap
-               Do not download Git submodules or plugin managers
+               Do not download TPM
   --help       Display this help message
 
-Sets up dotfiles by symlinking configs and bootstrapping plugin managers.
+Sets up dotfiles by symlinking configs and bootstrapping TPM.
 EOF
   exit 0
 }
@@ -72,34 +72,21 @@ link_path() {
   ln -s -- "$source" "$target"
 }
 
-bootstrap_submodules() {
-  if $SKIP_BOOTSTRAP || [ ! -f "$DOTFILES_DIR/.gitmodules" ]; then
-    return
-  fi
-  printf 'Initializing pinned Git submodules...\n'
-  run git -C "$DOTFILES_DIR" submodule update --init --recursive
-}
-
 install_tpm() {
   local tpm_dir="$HOME/.tmux/plugins/tpm"
-  if [ -d "$tpm_dir" ]; then
+  if [ -x "$tpm_dir/tpm" ]; then
     printf 'TPM already installed at %s\n' "$tpm_dir"
     return
   fi
+  if [ -d "$tpm_dir" ]; then
+    if find "$tpm_dir" -mindepth 1 -print -quit | grep -q .; then
+      printf 'Cannot install TPM: non-empty invalid directory at %s\n' "$tpm_dir" >&2
+      return 1
+    fi
+    run rmdir -- "$tpm_dir"
+  fi
   printf 'Installing TPM...\n'
   run git clone https://github.com/tmux-plugins/tpm "$tpm_dir"
-}
-
-install_vim_plug() {
-  local plug_file="$HOME/.vim/autoload/plug.vim"
-  if [ -f "$plug_file" ]; then
-    printf 'vim-plug already installed at %s\n' "$plug_file"
-    return
-  fi
-  printf 'Installing vim-plug...\n'
-  run mkdir -p "$HOME/.vim/autoload"
-  run curl -fLo "$plug_file" --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 }
 
 # Directories
@@ -107,8 +94,6 @@ run mkdir -p "$HOME/.config"
 run mkdir -p "$HOME/.vim_undo_files"
 run mkdir -p "$HOME/.config/Code/User"
 run mkdir -p "$HOME/.local/bin"
-
-bootstrap_submodules
 
 # Shell
 link_path "$DOTFILES_DIR/bash/bash_aliases" "$HOME/.bash_aliases"
@@ -148,7 +133,6 @@ link_path "$DOTFILES_DIR/scripts/maintenance.sh" "$HOME/.local/bin/maintenance.s
 # Plugin managers
 if ! $SKIP_BOOTSTRAP; then
   install_tpm
-  install_vim_plug
 fi
 
 if ! $DRY_RUN; then

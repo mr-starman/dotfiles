@@ -38,13 +38,10 @@ if command -v luac >/dev/null; then
   done < <(find "$REPO_DIR/nvim" -type f -name '*.lua' -print0)
 fi
 
-while read -r _ _ _ submodule_path; do
-  if ! git -C "$REPO_DIR" config -f .gitmodules --get-regexp '^submodule\..*\.path$' \
-    | awk '{ print $2 }' | grep -Fqx "$submodule_path"; then
-    echo "Missing .gitmodules entry for $submodule_path" >&2
-    exit 1
-  fi
-done < <(git -C "$REPO_DIR" ls-files --stage | awk '$1 == "160000"')
+if git -C "$REPO_DIR" ls-files --stage | awk '$1 == "160000" { found = 1 } END { exit !found }'; then
+  echo "Unexpected Git submodule found; plugins should be managed by their plugin manager" >&2
+  exit 1
+fi
 
 HOME="$TEST_HOME" "$REPO_DIR/install.sh" --dry-run --skip-bootstrap >/dev/null
 if find "$TEST_HOME" -mindepth 1 -print -quit | grep -q .; then
@@ -64,6 +61,30 @@ if HOME="$TEST_HOME" "$REPO_DIR/scripts/maintenance.sh" -a >/dev/null 2>&1; then
 fi
 if HOME="$TEST_HOME" "$REPO_DIR/scripts/maintenance.sh" -a invalid >/dev/null 2>&1; then
   echo "maintenance.sh accepted an unsupported AUR helper" >&2
+  exit 1
+fi
+
+maintenance_preview="$(HOME="$TEST_HOME" "$REPO_DIR/scripts/maintenance.sh" --dry-run -a none)"
+if grep -q -- '--noconfirm' <<<"$maintenance_preview"; then
+  echo "maintenance dry-run enabled noninteractive package operations by default" >&2
+  exit 1
+fi
+grep -q 'pacman -Syu' <<<"$maintenance_preview"
+grep -q 'pacman -Rns' <<<"$maintenance_preview"
+grep -q 'pacman -Qk' <<<"$maintenance_preview"
+
+confirmed_preview="$(HOME="$TEST_HOME" "$REPO_DIR/scripts/maintenance.sh" --dry-run --yes -m update -a none)"
+grep -q -- '--noconfirm' <<<"$confirmed_preview"
+health_preview="$(HOME="$TEST_HOME" "$REPO_DIR/scripts/maintenance.sh" --dry-run --mode health -a none)"
+grep -q 'pacman -Qk' <<<"$health_preview"
+
+CLONE_DIR="$TEST_HOME/fresh-clone"
+git clone -q "$REPO_DIR" "$CLONE_DIR"
+FRESH_HOME="$TEST_HOME/fresh-home"
+mkdir -p "$FRESH_HOME"
+HOME="$FRESH_HOME" "$CLONE_DIR/install.sh" --dry-run --skip-bootstrap >/dev/null
+if find "$FRESH_HOME" -mindepth 1 -print -quit | grep -q .; then
+  echo "fresh-clone dry-run modified HOME" >&2
   exit 1
 fi
 
