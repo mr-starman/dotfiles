@@ -6,8 +6,14 @@ return {
     "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
     "MunifTanjim/nui.nvim",
   },
+  keys = {
+    {
+      "<C-E>",
+      "<cmd>Neotree filesystem reveal left<cr>",
+      desc = "Reveal file tree",
+    },
+  },
   config = function()
-    vim.keymap.set("n", "<C-E>", ":Neotree filesystem reveal left<CR>")
     require("neo-tree").setup({
       filesystem = {
         filtered_items = {

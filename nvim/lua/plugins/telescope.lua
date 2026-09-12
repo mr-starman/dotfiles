@@ -18,6 +18,36 @@ return {
         end,
       },
     },
+    keys = {
+      {
+        "<C-p>",
+        function()
+          require("telescope.builtin").find_files()
+        end,
+        desc = "Find files",
+      },
+      {
+        "<leader>b",
+        function()
+          require("telescope.builtin").buffers()
+        end,
+        desc = "Find buffers",
+      },
+      {
+        "<leader>g",
+        function()
+          require("telescope.builtin").live_grep()
+        end,
+        desc = "Live grep",
+      },
+      {
+        "<leader>bl",
+        function()
+          require("telescope.builtin").current_buffer_fuzzy_find()
+        end,
+        desc = "Search current buffer",
+      },
+    },
     config = function()
       local telescope = require("telescope")
 
@@ -37,12 +67,6 @@ return {
 
       pcall(telescope.load_extension, "fzf")
       telescope.load_extension("ui-select")
-
-      local builtin = require("telescope.builtin")
-      vim.keymap.set("n", "<C-p>", builtin.find_files)
-      vim.keymap.set("n", "<leader>b", builtin.buffers)
-      vim.keymap.set("n", "<leader>g", builtin.live_grep)
-      vim.keymap.set("n", "<leader>bl", builtin.current_buffer_fuzzy_find)
     end,
   },
 }

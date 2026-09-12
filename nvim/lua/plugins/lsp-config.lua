@@ -74,7 +74,7 @@ return {
         },
       },
     },
-    lazy = false,
+    event = { "BufReadPre", "BufNewFile" },
     config = function()
       if vim.g.lsp_config_loaded then
         return
@@ -85,15 +85,12 @@ return {
 
       local servers = {
         tailwindcss = { capabilities = capabilities },
-        solargraph = { capabilities = capabilities },
         html = { capabilities = capabilities },
         lua_ls = { capabilities = capabilities },
         gopls = { capabilities = capabilities },
         ts_ls = { capabilities = capabilities },
-        csharp_ls = { capabilities = capabilities },
         taplo = { capabilities = capabilities },
         bashls = { capabilities = capabilities },
-        jdtls = { capabilities = capabilities },
         basedpyright = { capabilities = capabilities },
         ruff = { capabilities = capabilities },
         rust_analyzer = {
@@ -143,22 +140,52 @@ return {
           end
 
           local opts = { buffer = args.buf }
-          vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-          vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, opts)
-          vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, opts)
-          vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
-          vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, opts)
+          vim.keymap.set(
+            "n",
+            "K",
+            vim.lsp.buf.hover,
+            vim.tbl_extend("force", opts, { desc = "Hover documentation" })
+          )
+          vim.keymap.set(
+            "n",
+            "<leader>gd",
+            vim.lsp.buf.definition,
+            vim.tbl_extend("force", opts, { desc = "Go to definition" })
+          )
+          vim.keymap.set(
+            "n",
+            "<leader>gr",
+            vim.lsp.buf.references,
+            vim.tbl_extend("force", opts, { desc = "Go to references" })
+          )
+          vim.keymap.set(
+            "n",
+            "<leader>ca",
+            vim.lsp.buf.code_action,
+            vim.tbl_extend("force", opts, { desc = "Code action" })
+          )
+          vim.keymap.set(
+            "n",
+            "<space>rn",
+            vim.lsp.buf.rename,
+            vim.tbl_extend("force", opts, { desc = "Rename symbol" })
+          )
         end,
       })
 
       vim.keymap.set("n", "[d", function()
         vim.diagnostic.jump({ count = -1, float = true })
-      end)
+      end, { desc = "Previous diagnostic" })
       vim.keymap.set("n", "]d", function()
         vim.diagnostic.jump({ count = 1, float = true })
-      end)
-      vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float)
-      vim.keymap.set("n", "<leader>dq", vim.diagnostic.setloclist)
+      end, { desc = "Next diagnostic" })
+      vim.keymap.set(
+        "n",
+        "<leader>e",
+        vim.diagnostic.open_float,
+        { desc = "Open diagnostic float" }
+      )
+      vim.keymap.set("n", "<leader>dq", vim.diagnostic.setloclist, { desc = "Diagnostics loclist" })
     end,
   },
 }
