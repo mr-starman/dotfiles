@@ -1,0 +1,5 @@
+vim.api.nvim_create_user_command("ConfigHealth", function()
+  vim.cmd.checkhealth()
+  vim.cmd.Mason()
+  vim.cmd("vertical Lazy")
+end, { desc = "Open Neovim config health dashboards" })

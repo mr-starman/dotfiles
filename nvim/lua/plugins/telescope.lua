@@ -22,7 +22,7 @@ return {
       {
         "<C-p>",
         function()
-          require("telescope.builtin").find_files()
+          require("telescope.builtin").find_files({ cwd = require("config.project").root() })
         end,
         desc = "Find files",
       },
@@ -36,7 +36,7 @@ return {
       {
         "<leader>g",
         function()
-          require("telescope.builtin").live_grep()
+          require("telescope.builtin").live_grep({ cwd = require("config.project").root() })
         end,
         desc = "Live grep",
       },

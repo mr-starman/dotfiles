@@ -14,6 +14,8 @@ vim.opt.rtp:prepend(lazypath)
 require("config.vim-options")
 require("config.key-bindings")
 require("config.autocommands")
+require("config.project")
+require("config.health")
 -- TODO: Move to custom Lazy plug?
 require("config.cobol-stuff")
 

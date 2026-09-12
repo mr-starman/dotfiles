@@ -66,6 +66,34 @@ return {
         desc = "Toggle debug UI",
       },
     },
+    config = function()
+      local dap = require("dap")
+      local codelldb = vim.fn.stdpath("data") .. "/mason/bin/codelldb"
+
+      if vim.fn.executable(codelldb) == 1 then
+        dap.adapters.codelldb = {
+          type = "server",
+          port = "${port}",
+          executable = {
+            command = codelldb,
+            args = { "--port", "${port}" },
+          },
+        }
+
+        dap.configurations.rust = {
+          {
+            name = "Launch executable",
+            type = "codelldb",
+            request = "launch",
+            program = function()
+              return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+            end,
+            cwd = "${workspaceFolder}",
+            stopOnEntry = false,
+          },
+        }
+      end
+    end,
     dependencies = {
       {
         "rcarriga/nvim-dap-ui",
@@ -97,6 +125,15 @@ return {
     dependencies = "mfussenegger/nvim-dap",
     config = function(_, opts)
       require("dap-go").setup(opts)
+    end,
+  },
+  {
+    "mfussenegger/nvim-dap-python",
+    ft = "python",
+    dependencies = "mfussenegger/nvim-dap",
+    config = function()
+      local debugpy = vim.fn.stdpath("data") .. "/mason/packages/debugpy/venv/bin/python"
+      require("dap-python").setup(debugpy)
     end,
   },
 }

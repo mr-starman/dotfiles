@@ -49,13 +49,21 @@ return {
     opts = {
       ensure_installed = {
         "black",
+        "codelldb",
+        "debugpy",
+        "eslint_d",
         "delve",
         "goimports",
         "isort",
+        "jsonlint",
+        "markdownlint",
         "prettier",
         "shfmt",
+        "shellcheck",
         "stylua",
         "taplo",
+        "vale",
+        "yamllint",
       },
     },
   },
@@ -185,7 +193,8 @@ return {
         vim.diagnostic.open_float,
         { desc = "Open diagnostic float" }
       )
-      vim.keymap.set("n", "<leader>dq", vim.diagnostic.setloclist, { desc = "Diagnostics loclist" })
+      vim.keymap.set("n", "<leader>dL", vim.diagnostic.setloclist, { desc = "Diagnostics loclist" })
+      vim.keymap.set("n", "<leader>dQ", vim.diagnostic.setqflist, { desc = "Diagnostics quickfix" })
     end,
   },
 }
