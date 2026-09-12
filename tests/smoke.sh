@@ -70,6 +70,7 @@ if grep -q -- '--noconfirm' <<<"$maintenance_preview"; then
   exit 1
 fi
 grep -q 'pacman -Syu' <<<"$maintenance_preview"
+grep -q 'paccache -r' <<<"$maintenance_preview"
 grep -q 'pacman -Rns' <<<"$maintenance_preview"
 grep -q 'pacman -Qk' <<<"$maintenance_preview"
 

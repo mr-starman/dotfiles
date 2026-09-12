@@ -160,7 +160,11 @@ fi
 
 if mode_enabled clean; then
   log "🧹 Cleaning package cache..."
-  run_logged sudo paccache -r
+  if command -v paccache &> /dev/null || $DRY_RUN; then
+    run_logged sudo paccache -r
+  else
+    log "⚠️ 'paccache' not found. Install pacman-contrib to enable package-cache cleanup."
+  fi
 
   log "🗑️ Removing orphaned packages..."
   if $DRY_RUN; then

@@ -43,6 +43,8 @@ maintenance.sh --mode health
 
 Pass `--yes` only when noninteractive package operations are intentional. Use
 `--help` to see all options, including selection of `yay`, `paru`, or no AUR helper.
+Package-cache cleanup uses the optional `paccache` command from `pacman-contrib`;
+that step is skipped with a warning when it is not installed.
 
 ## Layout
 
