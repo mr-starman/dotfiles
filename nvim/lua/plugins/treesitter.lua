@@ -12,31 +12,55 @@ return {
     })
 
     treesitter.install({
-      "python",
-      "lua",
-      "vim",
-      "vimdoc",
-      "query",
       "bash",
+      "c_sharp",
+      "css",
+      "go",
+      "html",
+      "java",
+      "javascript",
       "json",
-      "yaml",
-      "toml",
+      "lua",
       "markdown",
       "markdown_inline",
+      "python",
+      "query",
+      "rust",
+      "toml",
+      "tsx",
+      "typescript",
+      "vim",
+      "vimdoc",
+      "yaml",
     })
+
+    vim.treesitter.language.register("c_sharp", "cs")
+    vim.treesitter.language.register("javascript", "javascriptreact")
+    vim.treesitter.language.register("tsx", "typescriptreact")
 
     vim.api.nvim_create_autocmd("FileType", {
       pattern = {
-        "python",
+        "bash",
+        "c_sharp",
+        "cs",
+        "css",
+        "go",
+        "html",
+        "java",
+        "javascript",
+        "javascriptreact",
+        "json",
         "lua",
+        "markdown",
+        "python",
+        "query",
+        "rust",
+        "toml",
+        "typescript",
+        "typescriptreact",
         "vim",
         "vimdoc",
-        "query",
-        "bash",
-        "json",
         "yaml",
-        "toml",
-        "markdown",
       },
       callback = function(args)
         vim.treesitter.start(args.buf)

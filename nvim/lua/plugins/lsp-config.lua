@@ -49,7 +49,6 @@ return {
 
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-      -- Define your servers and their configs
       local servers = {
         tailwindcss = { capabilities = capabilities },
         solargraph = { capabilities = capabilities },
@@ -60,7 +59,6 @@ return {
         csharp_ls = { capabilities = capabilities },
         taplo = { capabilities = capabilities },
         bashls = { capabilities = capabilities },
-        pylsp = { capabilities = capabilities },
         jdtls = { capabilities = capabilities },
         basedpyright = { capabilities = capabilities },
         ruff = { capabilities = capabilities },
@@ -83,11 +81,22 @@ return {
         },
       }
 
-      -- Register and enable each server
       for name, cfg in pairs(servers) do
         vim.lsp.config(name, cfg)
         vim.lsp.enable(name)
       end
+
+      vim.diagnostic.config({
+        float = {
+          border = "rounded",
+          source = true,
+        },
+        severity_sort = true,
+        virtual_text = {
+          source = "if_many",
+          spacing = 2,
+        },
+      })
 
       vim.api.nvim_create_autocmd("LspAttach", {
         callback = function(args)
@@ -107,6 +116,15 @@ return {
           vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, opts)
         end,
       })
+
+      vim.keymap.set("n", "[d", function()
+        vim.diagnostic.jump({ count = -1, float = true })
+      end)
+      vim.keymap.set("n", "]d", function()
+        vim.diagnostic.jump({ count = 1, float = true })
+      end)
+      vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float)
+      vim.keymap.set("n", "<leader>dq", vim.diagnostic.setloclist)
     end,
   },
 }
