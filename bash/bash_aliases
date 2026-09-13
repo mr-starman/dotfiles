@@ -102,6 +102,12 @@ alias .....="cd ../../../.."
 cl() { cd "$1" && ls -lah | less; }
 mkcd() { mkdir "$1" && cd "$1" || return; }
 
+# opencode
+alias oc='opencode'
+alias ocr='opencode run'
+alias ocu='opencode update --method curl'
+alias ocs='opencode serve'
+
 #snapper
 alias snap='snapper -c root -d'
 alias snaps='snapper ls'
