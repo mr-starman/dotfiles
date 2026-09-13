@@ -5,9 +5,3 @@
 # shellcheck source=/dev/null
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 
-## [Completion]
-## Completion scripts setup. Remove the following line to uninstall
-DART_COMPLETION="$HOME/.dart-cli-completion/bash-config.bash"
-# shellcheck source=/dev/null
-[ -f "$DART_COMPLETION" ] && . "$DART_COMPLETION" || true
-## [/Completion]
