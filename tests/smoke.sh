@@ -2,6 +2,8 @@
 
 set -euo pipefail
 
+FORCE_JAVASCRIPT_ACTIONS_TO_NODE24=true
+
 REPO_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
 TEST_HOME="$(mktemp -d)"
 trap 'rm -rf -- "$TEST_HOME"' EXIT
