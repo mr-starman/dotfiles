@@ -102,5 +102,6 @@
     },
     "editor.fontFamily": "'JetBrains Mono', 'monospace', monospace",
     "chat.viewSessions.orientation": "stacked",
-    "chat.disableAIFeatures": true
+    "chat.disableAIFeatures": true,
+    "editor.minimap.enabled": false
 }
