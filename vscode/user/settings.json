@@ -26,7 +26,6 @@
         "editor.formatOnSave": true
     },
     "vim.leader": ",",
-    "vim.sneakUseIgnorecaseAndSmartcase": true,
     "vim.timeout": 500,
     "vim.useSystemClipboard": true,
     "vim.vimrc.path": "$HOME/.vim/vimrc",
@@ -34,12 +33,11 @@
     "vim.visualstar": true,
     "vim.highlightedyank.enable": true,
     "vim.hlsearch": true,
-    "vim.ignorecase": false,
     "vim.statusBarColorControl": true,
     "workbench.colorCustomizations": {
-        "statusBar.background": "#5f00af",
-        "statusBar.noFolderBackground": "#5f00af",
-        "statusBar.debuggingBackground": "#5f00af",
+        "statusBar.background": "#005f5f",
+        "statusBar.noFolderBackground": "#005f5f",
+        "statusBar.debuggingBackground": "#005f5f",
         "statusBar.foreground": "#ffffff",
         "statusBar.debuggingForeground": "#ffffff"
     },
@@ -103,5 +101,7 @@
     "editor.fontFamily": "'JetBrains Mono', 'monospace', monospace",
     "chat.viewSessions.orientation": "stacked",
     "chat.disableAIFeatures": true,
-    "editor.minimap.enabled": false
+    "editor.minimap.enabled": false,
+    "vim.sneakUseIgnorecaseAndSmartcase": true,
+    "search.smartCase": true
 }
