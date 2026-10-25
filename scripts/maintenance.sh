@@ -124,6 +124,16 @@ run_logged() {
   fi
 }
 
+# For commands that may ask y/n questions: always show output on the terminal
+# (even without -v) unless -y was given, otherwise the prompt is hidden in the log.
+run_prompting() {
+  if $ASSUME_YES || $DRY_RUN || $VERBOSE; then
+    run_logged "$@"
+  else
+    "$@" 2>&1 | tee -a "$LOG_FILE"
+  fi
+}
+
 mode_enabled() {
   [[ "$MODE" == "all" || "$MODE" == "$1" ]]
 }
@@ -139,13 +149,13 @@ HEALTH_ISSUES=false
 
 if mode_enabled update; then
   log "📦 Updating system packages..."
-  run_logged sudo pacman -Syu "${confirm_args[@]}"
+  run_prompting sudo pacman -Syu "${confirm_args[@]}"
 
   if [[ "$AUR_HELPER" == "none" ]]; then
     log "🚫 Skipping AUR package updates."
   elif command -v "$AUR_HELPER" &> /dev/null || $DRY_RUN; then
     log "📦 Updating AUR packages with '$AUR_HELPER'..."
-    run_logged "$AUR_HELPER" -Syu "${confirm_args[@]}"
+    run_prompting "$AUR_HELPER" -Syu "${confirm_args[@]}"
   else
     log "⚠️ AUR helper '$AUR_HELPER' not found. Skipping AUR updates."
   fi
@@ -173,7 +183,7 @@ if mode_enabled clean; then
   else
     mapfile -t orphans < <(pacman -Qtdq || true)
     if [[ ${#orphans[@]} -gt 0 ]]; then
-      run_logged sudo pacman -Rns "${confirm_args[@]}" "${orphans[@]}"
+      run_prompting sudo pacman -Rns "${confirm_args[@]}" "${orphans[@]}"
     else
       log "✅ No orphaned packages found."
     fi
@@ -188,7 +198,7 @@ if mode_enabled clean; then
     if $ASSUME_YES; then
       run_logged flatpak uninstall --unused -y
     else
-      run_logged flatpak uninstall --unused
+      run_prompting flatpak uninstall --unused
     fi
   else
     log "ℹ️ Flatpak not installed. Skipping Flatpak cleanup."
