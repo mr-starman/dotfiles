@@ -103,5 +103,7 @@
     "chat.disableAIFeatures": true,
     "editor.minimap.enabled": false,
     "vim.sneakUseIgnorecaseAndSmartcase": true,
-    "search.smartCase": true
+    "search.smartCase": true,
+    "sqlens.maxRows": 1000,
+    "sqlens.export.numberStyle": "comma"
 }
