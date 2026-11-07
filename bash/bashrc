@@ -93,3 +93,6 @@ fi
 
 # opencode
 export PATH="$HOME/.opencode/bin:$PATH"
+
+# rust
+export PATH="$HOME/.cargo/bin:$PATH"
