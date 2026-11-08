@@ -13,6 +13,7 @@ return {
       { "<leader>j", group = "jumps/harpoon" },
       { "<leader>l", group = "lint" },
       { "<leader>p", group = "project/previous" },
+      { "<leader>r", group = "rust" },
       { "<leader>s", group = "search/save" },
       { "<leader>S", group = "sessions" },
       { "<leader>u", group = "ui" },

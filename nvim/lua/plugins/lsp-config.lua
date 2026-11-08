@@ -112,8 +112,10 @@ return {
                 prefix = "self",
               },
               cargo = {
-                loadOutDirsFromCheck = true,
+                allTargets = true,
+                buildScripts = { enable = true },
               },
+              check = { command = "clippy" },
               procMacro = {
                 enable = true,
               },
@@ -150,6 +152,9 @@ return {
           end
 
           local opts = { buffer = args.buf }
+          if c.name == "rust_analyzer" then
+            require("config.rust").on_attach(c, args.buf)
+          end
           vim.keymap.set(
             "n",
             "K",
