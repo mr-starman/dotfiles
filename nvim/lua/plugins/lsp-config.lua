@@ -105,9 +105,11 @@ return {
           capabilities = capabilities,
           settings = {
             ["rust-analyzer"] = {
-              assist = {
-                importMergeBehavior = "last",
-                importPrefix = "by_self",
+              imports = {
+                granularity = {
+                  group = "crate",
+                },
+                prefix = "self",
               },
               cargo = {
                 loadOutDirsFromCheck = true,
