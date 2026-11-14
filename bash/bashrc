@@ -96,3 +96,8 @@ export PATH="$HOME/.opencode/bin:$PATH"
 
 # rust
 export PATH="$HOME/.cargo/bin:$PATH"
+
+# dotnet
+export PATH=$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools
+eval "$(dotnet completions script bash)"
+complete -F _dotnet dn

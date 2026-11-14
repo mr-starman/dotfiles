@@ -13,6 +13,7 @@ alias mk='minikube'
 alias k='minikube kubectl'
 alias m='$PAGER'
 alias n='nvim'
+alias dn='dotnet'
 alias p='ping -c 3'
 u() {
   if command -v pacman >/dev/null; then
